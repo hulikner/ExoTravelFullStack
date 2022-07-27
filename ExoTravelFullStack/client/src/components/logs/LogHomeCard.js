@@ -14,8 +14,12 @@ export const LogHomeCard = ({ isLoggedIn, getLoggedInUser }) => {
   // React-Router-Dom use
   const { logId } = useParams();
   let [currentUser, setCurrentUser] = useState();
-  const [fireId, setFireId] = useState(null);
   const [logs, setLogs] = useState();
+  const [fireId, setFireId] = useState(null);
+  // const [isLoggedIn, setIsLoggedIn] = useState(null);
+  // useEffect(() => {
+  //   onLoginStatusChange(setIsLoggedIn);
+  // }, []);
 //   console.log(user);
   const getMeFire = useCallback(async()=>{
     try{
@@ -30,7 +34,7 @@ export const LogHomeCard = ({ isLoggedIn, getLoggedInUser }) => {
     }
     
     
-},[])
+ },[])
 // var user  =  getUserByFirebaseId(fireBaseId);
 
 //   setCurrentUser(getLoggedInUser);

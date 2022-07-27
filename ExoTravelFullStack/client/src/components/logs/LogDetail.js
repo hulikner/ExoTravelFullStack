@@ -6,6 +6,7 @@ import { epochDateConverter } from "../util/epochDateConverter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBitcoin } from "@fortawesome/free-brands-svg-icons";
 import { addReceipt } from "../../modules/ReceiptManager";
+import { ReviewForm } from "../reviews/ReviewForm";
 import "./LogDetail.css";
 
 export const LogDetail = () => {
@@ -24,8 +25,8 @@ export const LogDetail = () => {
   
   // States and setStates
   const [isLoading, setIsLoading] = useState(true);
-  const [log, setlog] = useState({
-    userId: "",
+  const [log, setLog] = useState({
+    userProfileId: "",
     departureDate: "",
     returnDate: "",
     exoPlanetId: "",
@@ -40,7 +41,7 @@ export const LogDetail = () => {
   const handleClickSaveEvent = async (i) => {
     i.preventDefault();
     const receipt = {
-      userId: log.userId,
+      userProfileId: log.userProfileId,
       departureDate: log.departureDate,
       returnDate: log.returnDate,
       exoPlanetId: log.exoPlanetId,
@@ -49,9 +50,9 @@ export const LogDetail = () => {
       logId: log.id,
     };
 
-    const newlog = {
-      id: log.id,
-      userId: log.userId,
+    const newLog = {
+      id: logId,
+      userProfileId: log.userProfileId,
       departureDate: log.departureDate,
       returnDate: log.returnDate,
       exoPlanetId: log.exoPlanetId,
@@ -65,7 +66,7 @@ export const LogDetail = () => {
     await addReceipt(receipt);
 
     // Awaits for updatelog before going to receipts page
-    await updateLog({ ...newlog });
+    await updateLog({ ...newLog });
 
     // Navigates to receipts page
     navigate(`/logs/${logId}/receipts`);
@@ -107,7 +108,7 @@ export const LogDetail = () => {
 
   // Gets the log clicked on and sets it
   useEffect(() => {
-    getLogById(logId).then(setlog);
+    getLogById(logId).then(setLog);
   }, [logId]);
 
   // Calls the functions to calculate cost and time based on users selections
@@ -229,7 +230,7 @@ export const LogDetail = () => {
       <div className="log-page-buttons">
         {log.returnDate < today ? (
           <Link to={`/exoPlanets/${log.exoPlanetId}/reviews/create`}>
-            <button type="button" className="log-page-button" onClick={() => navigate(`/exoPlanets/${log.exoPlanetId}/reviews/create`)}>
+            <button type="button" className="log-page-button" onClick={() => navigate(<ReviewForm log={log} />)}>
               Review
             </button>
           </Link>

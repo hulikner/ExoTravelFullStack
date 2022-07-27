@@ -42,7 +42,7 @@ export const LogList = () => {
   useEffect(  ()  => {
       if(fireId){
           // console.log(fireId)
-          const getMeLogs =  getLogsByUserId(fireId.id).then(setLogs)
+          getLogsByUserId(fireId.id).then(setLogs)
         }
     }, [fireId]);
     useEffect( ()  => {

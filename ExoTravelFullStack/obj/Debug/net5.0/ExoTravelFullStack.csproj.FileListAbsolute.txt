@@ -1,10 +1,14 @@
+C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\ExoTravelFullStack.dll
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\appsettings.json
+C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\appsettings.Local.json
+C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\client\package-lock.json
+C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\client\package.json
+C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\client\public\manifest.json
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\ExoTravelFullStack.exe
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\ExoTravelFullStack.deps.json
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\ExoTravelFullStack.runtimeconfig.json
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\ExoTravelFullStack.runtimeconfig.dev.json
-C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\ExoTravelFullStack.dll
-C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\ExoTravelFullStack.pdb
+C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\Microsoft.Identity.Client.dll
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -44,8 +48,3 @@ C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\obj\Debug\
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\obj\Debug\net5.0\refint\ExoTravelFullStack.dll
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\obj\Debug\net5.0\ExoTravelFullStack.pdb
 C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\obj\Debug\net5.0\ExoTravelFullStack.genruntimeconfig.cache
-C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\obj\Debug\net5.0\ref\ExoTravelFullStack.dll
-C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\client\public\manifest.json
-C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\client\package-lock.json
-C:\Users\deric\workspace\csharp\ExoTravelFullStack\ExoTravelFullStack\bin\Debug\net5.0\client\package.json

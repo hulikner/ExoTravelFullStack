@@ -8,7 +8,7 @@ import { getAllExoPlanets,
          getAllExoPlanetsByRatingDesc } from "../../modules/ExoPlanetManager";
 import "./ExoPlanetList.css";
 
-export const ExoPlanetList = () => {
+export const ExoPlanetList = (fireId) => {
   // State setState
   const [exoPlanets, setExoPlanets] = useState([]);
   const [ascending, setAscending] = useState(true);
@@ -56,7 +56,7 @@ export const ExoPlanetList = () => {
       </div>
       <div className="exoPlanets-container">
         {exoPlanets.map((exoPlanet) => (
-          <ExoPlanetCard exoPlanet={exoPlanet} key={`${exoPlanet.id}-${ascending}`} />
+          <ExoPlanetCard fireId={fireId} exoPlanet={exoPlanet} key={`${exoPlanet.id}-${ascending}`} />
         ))}
       </div>
     </>

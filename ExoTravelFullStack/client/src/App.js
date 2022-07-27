@@ -5,6 +5,8 @@ import ApplicationViews from "./components/ApplicationViews";
 import { onLoginStatusChange } from "./modules/AuthManager";
 import { Header } from "./components/Header"
 import { Footer } from "./components/footer/Footer"
+// import { getUserByFirebaseId } from './modules/AuthManager';
+// import firebase from "firebase/app";
 
 function App({ getLoggedInUser }) {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -12,6 +14,7 @@ function App({ getLoggedInUser }) {
   useEffect(() => {
     onLoginStatusChange(setIsLoggedIn);
   }, []);
+  
 
   if (isLoggedIn === null) {
     return <Spinner className="app-spinner dark" />;
@@ -20,7 +23,7 @@ function App({ getLoggedInUser }) {
   return (
     <Router>
       <Header isLoggedIn={isLoggedIn}/>
-      <ApplicationViews isLoggedIn={isLoggedIn} getLoggedInUser={getLoggedInUser}/>
+      <ApplicationViews isLoggedIn={isLoggedIn} getLoggedInUser={getLoggedInUser} />
       <Footer />
     </Router>
   );

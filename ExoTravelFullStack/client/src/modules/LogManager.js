@@ -19,20 +19,20 @@ export const deleteLog = (id) => {
   console.log(id)
     return fetch(`${apiUrl}/${id}`, {
         method: "DELETE"
-    }).then(res => res.json())
+    })
 }
 
 export const updateLog  = (editedLog) => {
     return fetch(`${apiUrl}/${editedLog.id}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(editedLog)
-    }).then(data => data.json());
+    });
   }
 
-  export const addLog = newLog => {
+  export const addLog = (newLog) => {
     return fetch(`${apiUrl}`, {
       method: "POST",
       headers: {

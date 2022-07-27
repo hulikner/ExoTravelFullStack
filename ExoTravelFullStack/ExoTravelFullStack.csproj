@@ -5,20 +5,12 @@
   </PropertyGroup>
   
 <ItemGroup>
-    <Content Remove="appsettings.Development..json" />
-  </ItemGroup>
-  
-<ItemGroup>
   <_WebToolingArtifacts Remove="Properties\launchSettings.json" />
 </ItemGroup>
   
 <ItemGroup>
   <Content Include="Properties\launchSettings.json" />
 </ItemGroup>
-
-  <ItemGroup>
-    <None Include="appsettings.Development..json" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
@@ -29,3 +21,6 @@
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>
+
+
+

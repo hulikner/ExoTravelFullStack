@@ -1,13 +1,46 @@
 // Imports
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Rating from "@mui/material/Rating";
 import { useNavigate } from "react-router-dom";
 import { epochDateConverter } from "../util/epochDateConverter";
+import { getUserByFirebaseId } from '../../modules/AuthManager';
+import firebase from "firebase/app";
 
 // Review Card
 export const ReviewCard = ({ review }) => {
   // State setState
   const [isLoading, setIsLoading] = useState(false);
+  const [fireId, setFireId] = useState([]);
+  // const [isLoggedIn, setIsLoggedIn] = useState(null);
+  // useEffect(() => {
+  //   onLoginStatusChange(setIsLoggedIn);
+  // }, []);
+  // console.log(user);
+  const getMeFire = useCallback(()=>{
+    try{
+        var fireBaseId =  firebase.auth().currentUser.uid;
+
+    }
+    
+    catch(e){
+        console.log(e.message)
+    }finally{
+        getUserByFirebaseId(fireBaseId).then(setFireId)
+    }
+    
+    
+ },[])
+// // var user  =  getUserByFirebaseId(fireBaseId);
+
+// //   setCurrentUser(getLoggedInUser);
+//   // State setState
+
+//   // Gets current users id
+  
+  useEffect( ()  => {
+    getMeFire()
+// getUserByFirebaseId(fireId).then(setFireId);
+  }, [fireId]);
 
   // React-Router-DOM use
   const navigate = useNavigate();
@@ -17,8 +50,6 @@ export const ReviewCard = ({ review }) => {
   const formattedEditDate = review?.editDate ? epochDateConverter(review.editDate, "yyy-MM-dd") : "";
 
   // Gets user id
-  let userName = JSON.parse(sessionStorage.getItem("exoTravel_user"));
-
   // Displays review card
   return (
     <div className="review-card-content">
@@ -28,16 +59,16 @@ export const ReviewCard = ({ review }) => {
       </div>
       <div className="review-card-details">
         <span className="review-card">
-          By: {review.user?.firstName} {review.user?.lastName}
+          By: {review.userProfile.firstName} {review.userProfile.lastName}
         </span>
         <br />
         <span className="review-card"> {review.message}</span>
         <br />
         <p className="review-card">
-          <Rating style={{ color: "#2f53d8" }} value={+review.stars} readOnly />{" "}
+          <Rating style={{ color: "#2f53d8" }} value={+review.star} readOnly />{" "}
         </p>
       </div>
-      {review.userId === +userName ? (
+      {review.userProfileId === +fireId.id ? (
         <>
           <button type="button" className="edit-cancel-button" disabled={isLoading} onClick={() => navigate(`/exoPlanets/${review.exoPlanetId}/reviews/${review.id}/edit`)}>
             Edit

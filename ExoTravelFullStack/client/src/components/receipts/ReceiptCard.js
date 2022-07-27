@@ -19,9 +19,9 @@ export const ReceiptCard = ({ receipt }) => {
           <p className="receipt-pic-title">{receipt.exoPlanet.name}</p>
         </div>
         <div className="receipt-card-info">
-          <span className="receipt-card">First Name: {receipt.user.firstName}</span>
+          <span className="receipt-card">First Name: {receipt.userProfile.firstName}</span>
           <br />
-          <span className="receipt-card">Last Name: {receipt.user.lastName}</span>
+          <span className="receipt-card">Last Name: {receipt.userProfile.lastName}</span>
           <br />
           <span className="receipt-card">Departure Date: {formattedDepartureDate}</span>
           <br />

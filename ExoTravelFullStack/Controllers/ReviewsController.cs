@@ -25,7 +25,7 @@ namespace ExoTravelFullStack.Controllers
             return Ok(_reviewRepository.GetAllReviews());
         }
 
-        [HttpGet("GetAllReviewByExoPlanet/{id}")]
+        [HttpGet("GetAllReviewsByExoPlanet/{id}")]
         public IActionResult GetAllReviewsByExoPlanet(int id)
         {
             return Ok(_reviewRepository.GetAllReviewsByExoPlanet(id));
@@ -52,12 +52,12 @@ namespace ExoTravelFullStack.Controllers
 
         // PUT api/<ReviewsController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Review review)
+        public IActionResult Put(Review review)
         {
-            if (id != review.Id)
-            {
-                return BadRequest();
-            }
+            //if (id != review.Id)
+            //{
+            //    return BadRequest();
+            //}
 
             _reviewRepository.Update(review);
             return NoContent();

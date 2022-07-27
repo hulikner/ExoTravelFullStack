@@ -13,8 +13,12 @@ export const ReviewEditForm = () => {
   // State setState
   const [isLoading, setIsLoading] = useState(false);
   const [review, setReview] = useState({
+    exoPlanetId:"",
+    userProfileId: "",
     message: "",
-    stars: "",
+    star: "",
+    createDate: "",
+    editDate: "",
   });
 
   // Handles the changes in fields when user selects field
@@ -29,9 +33,12 @@ export const ReviewEditForm = () => {
     setIsLoading(true);
 
     const editedReview = {
-      id: +reviewId,
+      id: review.id,
+      exoPlanetId: review.exoPlanetId,
+      userProfileId: review.userProfileId,
       message: review.message,
-      stars: +review.stars,
+      star: +review.star,
+      createDate: +review.createDate,
       editDate: new Date().getTime() / 1000,
     };
     updateReview(editedReview).then(() => navigate(`/exoPlanets/${review.exoPlanetId}/reviews`));
@@ -59,8 +66,8 @@ export const ReviewEditForm = () => {
           </fieldset>
           <fieldset className="review-edit-fields">
             <div className="review-edit-stars">
-              <label htmlFor="stars">Number of Stars:</label>
-              <input type="text" max='5' id="stars" onChange={handleFieldChange} required className="form-control-stars " placeholder="Number of Stars" value={review.stars} />
+              <label htmlFor="star">Number of Stars:</label>
+              <input type="text" max='5' id="star" onChange={handleFieldChange} required className="form-control-star " placeholder="Number of Stars" value={review.star} />
             </div>
           </fieldset>
           <div className="edit-review-save-cancel">

@@ -7,12 +7,12 @@ export const getAllExoPlanets = () => {
 
 export const updateExoPlanet  = (editedPlanet) => {
     return fetch(`${apiUrl}/${editedPlanet.id}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(editedPlanet)
-    }).then(data => data.json());
+    });
   }
   
 export const getAllExoPlanetsByLightYearsAsc = () => {

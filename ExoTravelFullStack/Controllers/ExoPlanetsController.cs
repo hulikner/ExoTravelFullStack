@@ -71,9 +71,9 @@ namespace ExoTravelFullStack.Controllers
 
         // PUT api/<ExoPlanetsController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, ExoPlanet exoPlanet)
+        public IActionResult Put(ExoPlanet exoPlanet)
         {
-            if (id != exoPlanet.Id)
+            if (exoPlanet.Id != exoPlanet.Id)
             {
                 return BadRequest();
             }

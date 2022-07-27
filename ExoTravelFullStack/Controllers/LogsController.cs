@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ExoTravelFullStack.Models;
 using ExoTravelFullStack.Repositories;
+using System.Security.Claims;
+
 
 namespace ExoTravelFullStack.Controllers
 {
@@ -12,10 +14,12 @@ namespace ExoTravelFullStack.Controllers
     public class LogsController : ControllerBase
     {
         private readonly ILogRepository _logRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
-        public LogsController(ILogRepository logRepository)
+        public LogsController(ILogRepository logRepository, IUserProfileRepository userProfileRepository)
         {
             _logRepository = logRepository;
+            _userProfileRepository = userProfileRepository;
         }
 
         // GET: api/<LogsController>
@@ -28,7 +32,8 @@ namespace ExoTravelFullStack.Controllers
         [HttpGet("GetLogsByUserProfileId/{id}")]
         public IActionResult GetLogsByUserProfileId(int id)
         {
-            var log = _logRepository.GetLogsByUserProfileId(id);
+            var user = GetCurrentUserProfile();
+            var log = _logRepository.GetLogsByUserProfileId(user.Id);
             if (log == null)
             {
                 return NotFound();
@@ -52,6 +57,8 @@ namespace ExoTravelFullStack.Controllers
         [HttpPost]
         public IActionResult Post(Log log)
         {
+            var user = GetCurrentUserProfile();
+            log.UserProfileId = user.Id;
             _logRepository.Add(log);
             return CreatedAtAction("Get", new { id = log.Id }, log);
         }
@@ -76,6 +83,12 @@ namespace ExoTravelFullStack.Controllers
         {
             _logRepository.Delete(id);
             return NoContent();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

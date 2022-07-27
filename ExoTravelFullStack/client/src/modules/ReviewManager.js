@@ -2,7 +2,7 @@ const apiUrl = "/api/reviews"
 
 
 export const getReviewsByExoPlanet = (id) => {
-    return fetch(`${apiUrl}?_expand=exoPlanet&_expand=user&exoPlanetId=${id}`)
+    return fetch(`${apiUrl}/GetAllReviewsByExoPlanet/${id}`)
     .then(res => res.json())
 }
 
@@ -19,15 +19,15 @@ export const deleteReview = id => {
 
 export const updateReview  = (editedReview) => {
     return fetch(`${apiUrl}/${editedReview.id}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(editedReview)
-    }).then(data => data.json());
+    });
   }
 
-  export const addReview = newReview => {
+  export const addReview = (newReview) => {
     return fetch(`${apiUrl}`, {
       method: "POST",
       headers: {

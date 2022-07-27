@@ -15,6 +15,7 @@ export const LogEditForm = () => {
   // State setState
   const [isLoading, setIsLoading] = useState(false);
   const [log, setLog] = useState({
+    id: "",
     departureDate: "",
     returnDate: "",
     mode: "",
