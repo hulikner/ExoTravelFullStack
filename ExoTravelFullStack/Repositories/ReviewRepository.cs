@@ -185,7 +185,7 @@ namespace ExoTravelFullStack.Repositories
                                                Star = @star,
                                                Message = @message, 
                                                UserProfileId = @userProfileId, 
-                                               CreateDate = @createDate,
+                                               CreateDate = @createDate
                                          WHERE Id = @id";
                     DbUtils.AddParameter(cmd, "@exoPlanetId", review.ExoPlanetId);
                     DbUtils.AddParameter(cmd, "@editDate", review.EditDate);

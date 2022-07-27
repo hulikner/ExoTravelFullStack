@@ -1,7 +1,7 @@
 // Imports
 import React, { useEffect, useState } from "react";
 import { ReceiptHomeCard } from "./ReceiptHomeCard";
-import { getAllReceipts, deleteReceipt, getReceiptByUserId } from "../../modules/ReceiptManager";
+import { getAllReceipts, deleteReceipt, getReceiptByUserId, getAllReceiptsByUserId } from "../../modules/ReceiptManager";
 import "./ReceiptList.css";
 
 // Receipts list
@@ -10,7 +10,6 @@ export const ReceiptHomeList = () => {
   const [receipts, setReceipts] = useState([]);
 
  // Get user
- const currentUser = JSON.parse(sessionStorage.getItem("exoTravel_user"));
 
   // Handles delete
   const handleDeleteReceipt = (id) => {
@@ -19,7 +18,7 @@ export const ReceiptHomeList = () => {
 
   // Gets receipt by itinerary id and sets
   useEffect(() => {
-    getReceiptByUserId(currentUser).then(setReceipts);
+    getAllReceiptsByUserId().then(setReceipts);
   }, []);
 
   // Displays receipts

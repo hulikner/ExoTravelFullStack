@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "85qUlDZfoQxdPVJtJE5/JmtYemOPgWNLGygs98f0hw7y0mk5vRpDTyZn1XEkSWGnNCefjXixQxpx5MVUMM9ouA==",
+  "dgSpecHash": "8I6/4djribiCASxz0cBpw9NJGQkd/1Jm3+o+gkvTbV3UEXgLKVdLS/H0niwPkTO6xEGCbvDEABQDnEELQX8zlg==",
   "success": true,
   "projectFilePath": "C:\\Users\\deric\\workspace\\csharp\\ExoTravelFullStack\\ExoTravelFullStack\\ExoTravelFullStack.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\deric\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.17\\microsoft.aspnetcore.authentication.jwtbearer.5.0.17.nupkg.sha512",
+    "C:\\Users\\deric\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.5\\microsoft.aspnetcore.authentication.jwtbearer.5.0.5.nupkg.sha512",
     "C:\\Users\\deric\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\deric\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.2\\microsoft.data.sqlclient.2.1.2.nupkg.sha512",
     "C:\\Users\\deric\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",

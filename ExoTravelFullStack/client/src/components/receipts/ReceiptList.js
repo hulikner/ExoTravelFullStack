@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { ReceiptCard } from "./ReceiptCard";
 import { useParams } from "react-router-dom";
-import { getAllReceipts, deleteReceipt, getReceiptByLogId } from "../../modules/ReceiptManager";
+import { getAllReceipts, deleteReceipt, getReceiptByLogId, getAllReceiptsByUserId } from "../../modules/ReceiptManager";
 import "./ReceiptList.css";
 
 // Receipts list
@@ -20,7 +20,7 @@ export const ReceiptList = () => {
 
   // Gets receipt by log id and sets
   useEffect(() => {
-    getReceiptByLogId(logId).then(setReceipts);
+    getAllReceiptsByUserId().then(setReceipts);
   }, []);
 
   // Displays receipts

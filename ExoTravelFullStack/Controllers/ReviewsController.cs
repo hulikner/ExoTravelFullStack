@@ -52,12 +52,12 @@ namespace ExoTravelFullStack.Controllers
 
         // PUT api/<ReviewsController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(Review review)
+        public IActionResult Put(int id, Review review)
         {
-            //if (id != review.Id)
-            //{
-            //    return BadRequest();
-            //}
+            if (id != review.Id)
+            {
+                return BadRequest();
+            }
 
             _reviewRepository.Update(review);
             return NoContent();

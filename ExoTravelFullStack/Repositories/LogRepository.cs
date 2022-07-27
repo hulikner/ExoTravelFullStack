@@ -159,7 +159,7 @@ namespace ExoTravelFullStack.Repositories
                     DbUtils.AddParameter(cmd, "@exoPlanetId", log.ExoPlanetId);
                     DbUtils.AddParameter(cmd, "@departureDate", log.DepartureDate);
                     DbUtils.AddParameter(cmd, "@returnDate", log.ReturnDate);
-                    _ = cmd.Parameters.AddWithValue("@reviewId", log.ReviewId == null ? DBNull.Value : log.ReviewId);
+                    _ = cmd.Parameters.AddWithValue("@reviewId", log.ReviewId != null ? log.ReviewId : DBNull.Value);
                     DbUtils.AddParameter(cmd, "@mode", log.Mode);
                     log.Id = (int)cmd.ExecuteScalar();
                 };
@@ -243,14 +243,13 @@ namespace ExoTravelFullStack.Repositories
                 {
                     cmd.CommandText = @"UPDATE Log
                                            SET UserProfileId = @userProfileId, 
-                                               ExoPlanetId = @exoPlanetId,
                                                DepartureDate = @departureDate, 
                                                ReturnDate = @returnDate, 
                                                ReviewId = @reviewId,
-                                               Mode = @mode,
-                                         WHERE log.Id = @id";
+                                               Mode = @mode
+                                         WHERE Id = @id";
                     DbUtils.AddParameter(cmd, "@userProfileId", log.UserProfileId);
-                    DbUtils.AddParameter(cmd, "@exoPlanetId", log.ExoPlanetId);
+                    //DbUtils.AddParameter(cmd, "@exoPlanetId", log.ExoPlanetId);
                     DbUtils.AddParameter(cmd, "@departureDate", log.DepartureDate);
                     DbUtils.AddParameter(cmd, "@returnDate", log.ReturnDate);
                     DbUtils.AddParameter(cmd, "@reviewId", log.ReviewId);

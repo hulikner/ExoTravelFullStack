@@ -275,7 +275,7 @@ namespace ExoTravelFullStack.Repositories
                                         LEFT JOIN UserType ut ON up.UserTypeId = ut.Id
                                         LEFT JOIN ExoPlanet ex ON r.ExoPlanetId = ex.Id
                                         LEFT JOIN Log l ON r.LogId = l.Id
-                                        WHERE r.Logid = @id";
+                                        WHERE r.LogId = @id";
 
                     DbUtils.AddParameter(cmd, "@id", id);
                     using (SqlDataReader reader = cmd.ExecuteReader())

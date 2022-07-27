@@ -55,7 +55,7 @@ console.log(fireId)
     rating: "",
   });
   const [log, setLog] = useState({
-    userProfileId: fireId.id,
+    userProfileId: "",
     departureDate: "",
     returnDate: "",
     exoPlanetId: Number(exoPlanetId),
@@ -164,7 +164,7 @@ console.log(fireId)
           </div>
         </div>
         <div className="card-exoPlanet-starRating">
-          <Rating style={{ color: "#f4100f" }} value={exoPlanet.rating} readOnly />{" "}
+          <Rating style={{ color: "#f4100f" }} value={+exoPlanet.rating} readOnly />{" "}
         </div>
       </section>
       </div>

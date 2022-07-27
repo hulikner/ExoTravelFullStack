@@ -25,15 +25,21 @@ h2.receipt-list-header {
 }
 
 .receipt-pic {
-  height: 100px;
+  height: 175px;
   width: auto;
   border-radius: 20px;
+}
+.receipt-list-content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .receipt-card-img {
   display: flex;
   flex-direction: column;
-  width: 15vw;
+  width: 12vw;
   border-radius: 20px;
   padding: 10px;
   margin: 20px;
@@ -52,6 +58,7 @@ h2.receipt-list-header {
   box-shadow: 5px 5px 5px 5px black;
   -webkit-text-stroke-width: 0.75px;
   -webkit-text-stroke-color: black;
+  margin-bottom: 60px;
 }
 
 .receipt-card-info {
@@ -74,7 +81,7 @@ h2.receipt-list-header {
   width: auto;
   height: auto;
   padding: 10px;
-  font-size: 20px;
+  font-size: 26px;
 }
 
 .receipt-card {

@@ -1,3 +1,4 @@
+
 const apiUrl = "/api/exoPlanets"
 
 export const getAllExoPlanets = () => {

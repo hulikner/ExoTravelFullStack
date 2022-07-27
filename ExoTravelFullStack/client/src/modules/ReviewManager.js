@@ -1,3 +1,5 @@
+import { getToken } from "./AuthManager";
+
 const apiUrl = "/api/reviews"
 
 

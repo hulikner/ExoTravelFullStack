@@ -41,6 +41,7 @@ export const ReviewEditForm = () => {
       createDate: +review.createDate,
       editDate: new Date().getTime() / 1000,
     };
+    console.log(editedReview)
     updateReview(editedReview).then(() => navigate(`/exoPlanets/${review.exoPlanetId}/reviews`));
   };
 

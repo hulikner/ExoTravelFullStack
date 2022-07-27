@@ -5,7 +5,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { epochDateConverter } from "../util/epochDateConverter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBitcoin } from "@fortawesome/free-brands-svg-icons";
-import { addReceipt } from "../../modules/ReceiptManager";
+import { addReceipt, getReceiptByLogId } from "../../modules/ReceiptManager";
 import { ReviewForm } from "../reviews/ReviewForm";
 import "./LogDetail.css";
 
@@ -41,6 +41,7 @@ export const LogDetail = () => {
   const handleClickSaveEvent = async (i) => {
     i.preventDefault();
     const receipt = {
+    
       userProfileId: log.userProfileId,
       departureDate: log.departureDate,
       returnDate: log.returnDate,
@@ -51,13 +52,13 @@ export const LogDetail = () => {
     };
 
     const newLog = {
-      id: logId,
+      id: +logId,
       userProfileId: log.userProfileId,
       departureDate: log.departureDate,
       returnDate: log.returnDate,
       exoPlanetId: log.exoPlanetId,
+      reviewId: log.reviewId,
       mode: log.mode,
-      paid: true,
     };
 
     setIsLoading(true);
@@ -66,7 +67,9 @@ export const LogDetail = () => {
     await addReceipt(receipt);
 
     // Awaits for updatelog before going to receipts page
+    console.log(newLog)
     await updateLog({ ...newLog });
+    const r = getReceiptByLogId(newLog.id)
 
     // Navigates to receipts page
     navigate(`/logs/${logId}/receipts`);

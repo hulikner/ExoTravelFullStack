@@ -15,26 +15,11 @@ export const LogHomeCard = ({ isLoggedIn, getLoggedInUser }) => {
   const { logId } = useParams();
   let [currentUser, setCurrentUser] = useState();
   const [logs, setLogs] = useState();
-  const [fireId, setFireId] = useState(null);
   // const [isLoggedIn, setIsLoggedIn] = useState(null);
   // useEffect(() => {
   //   onLoginStatusChange(setIsLoggedIn);
   // }, []);
-//   console.log(user);
-  const getMeFire = useCallback(async()=>{
-    try{
-        var fireBaseId = firebase.auth().currentUser.uid;
-
-    }
-    
-    catch(e){
-        console.log(e.message)
-    }finally{
-        getUserByFirebaseId(fireBaseId).then(setFireId)
-    }
-    
-    
- },[])
+  
 // var user  =  getUserByFirebaseId(fireBaseId);
 
 //   setCurrentUser(getLoggedInUser);
@@ -42,17 +27,15 @@ export const LogHomeCard = ({ isLoggedIn, getLoggedInUser }) => {
 
   // Gets current users id
   
-  useEffect( ()  => {
-    getMeFire()
-  }, []);
+  
   // Gets all the logs by user for Home page
   useEffect( ()  => {
-    if(fireId){
+    
 
-        getLogsByUserId(fireId.id).then(setLogs);
-    }
-  }, [fireId]);
-console.log(fireId)
+        getLogsByUserId().then(setLogs);
+    
+  }, []);
+
   // Sends a list of users logs to Home Page
   return (
     <div className="log-home-container">

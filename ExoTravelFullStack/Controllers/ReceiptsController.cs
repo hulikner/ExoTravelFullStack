@@ -4,18 +4,24 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ExoTravelFullStack.Models;
 using ExoTravelFullStack.Repositories;
+using System.Security.Claims;
+
 
 namespace ExoTravelFullStack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ReceiptsController : ControllerBase
     {
         private readonly IReceiptRepository _receiptRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
-        public ReceiptsController(IReceiptRepository receiptRepository)
+
+        public ReceiptsController(IReceiptRepository receiptRepository, IUserProfileRepository userProfileRepository)
         {
             _receiptRepository = receiptRepository;
+            _userProfileRepository = userProfileRepository;
         }
 
         // GET: api/<ReceiptsController>
@@ -25,10 +31,11 @@ namespace ExoTravelFullStack.Controllers
             return Ok(_receiptRepository.GetAllReceipts());
         }
 
-        [HttpGet("GetAllReceiptsByUserId/{id}")]
+        [HttpGet("GetAllReceiptsByUserId")]
         public IActionResult GetAllReceiptsByUserId(int id)
         {
-            return Ok(_receiptRepository.GetAllReceiptsByUserId(id));
+            var user = GetCurrentUserProfile();
+            return Ok(_receiptRepository.GetAllReceiptsByUserId(user.Id));
         }
 
         // GET api/<ReceiptsController>/5
@@ -72,6 +79,11 @@ namespace ExoTravelFullStack.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

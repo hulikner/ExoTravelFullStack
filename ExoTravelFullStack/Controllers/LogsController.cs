@@ -11,6 +11,7 @@ namespace ExoTravelFullStack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LogsController : ControllerBase
     {
         private readonly ILogRepository _logRepository;
@@ -29,8 +30,8 @@ namespace ExoTravelFullStack.Controllers
             return Ok(_logRepository.GetAllLogs());
         }
 
-        [HttpGet("GetLogsByUserProfileId/{id}")]
-        public IActionResult GetLogsByUserProfileId(int id)
+        [HttpGet("GetLogsByUserProfileId")]
+        public IActionResult GetLogsByUserProfileId()
         {
             var user = GetCurrentUserProfile();
             var log = _logRepository.GetLogsByUserProfileId(user.Id);
@@ -67,6 +68,9 @@ namespace ExoTravelFullStack.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Log log)
         {
+            var user = GetCurrentUserProfile();
+            log.UserProfileId = user.Id;
+
             if (id != log.Id)
             {
                 return BadRequest();
