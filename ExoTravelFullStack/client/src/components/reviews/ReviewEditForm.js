@@ -13,12 +13,13 @@ export const ReviewEditForm = () => {
   // State setState
   const [isLoading, setIsLoading] = useState(false);
   const [review, setReview] = useState({
-    exoPlanetId:"",
+    id: "",
     userProfileId: "",
-    message: "",
-    star: "",
+    exoPlanetId: "",
     createDate: "",
     editDate: "",
+    star: "",
+    message: "",
   });
 
   // Handles the changes in fields when user selects field
@@ -34,15 +35,15 @@ export const ReviewEditForm = () => {
 
     const editedReview = {
       id: review.id,
-      exoPlanetId: review.exoPlanetId,
       userProfileId: review.userProfileId,
-      message: review.message,
-      star: +review.star,
-      createDate: +review.createDate,
+      exoPlanetId: review.exoPlanetId,
+      createDate: review.createDate,
       editDate: new Date().getTime() / 1000,
+      star: review.star,
+      message: review.message,
     };
     console.log(editedReview)
-    updateReview(editedReview).then(() => navigate(`/exoPlanets/${review.exoPlanetId}/reviews`));
+    updateReview(editedReview).then(() => navigate(`/exoPlanets/${editedReview.exoPlanetId}/reviews`));
   };
 
   // Gets review by id and sets

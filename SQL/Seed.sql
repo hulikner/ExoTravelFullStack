@@ -19,6 +19,11 @@ insert into ExoPlanet (Id, Name, Mass, Radius, EqTemp, Orbit, LightYears, Detail
 insert into ExoPlanet (Id, Name, Mass, Radius, EqTemp, Orbit, LightYears, Detail, Rating) values (6, 'Teegardens-Star-b', 5.6, 5, 5, 450, 60, 'Mars is the fourth planet from the Sun', 5);
 set identity_insert [ExoPlanet] off
 
+set identity_insert [Review] on
+insert into Review (Id, UserProfileId, ExoPlanetId, CreateDate, EditDate, Message, Star) values (1, 1, 1, 1651017600, 1650240000, 'Ion-Drive', 2);
+insert into Review (Id, UserProfileId, ExoPlanetId, CreateDate, EditDate, Message, Star) values (2, 1, 1, 1651017600, 1650240000, 'Ion-Drive', 3);
+set identity_insert [Review] off
+
 set identity_insert [Log] on
 insert into Log (Id, UserProfileId, ExoPlanetId, DepartureDate, ReturnDate, ReviewId, Mode) values (1, 1, 1, 1651017600, 1650240000, 1, 'Ion-Drive');
 insert into Log (Id, UserProfileId, ExoPlanetId, DepartureDate, ReturnDate, ReviewId, Mode) values (2, 1, 2, 1651017600, 1650240000, 2, 'Warp-Drive');
@@ -32,12 +37,6 @@ set identity_insert [Receipt] on
 insert into Receipt (Id, UserProfileId, ExoPlanetId, DepartureDate, ReturnDate, LogId, Paid, Mode) values (1, 1, 1, 1651017600, 1650240000, 1, 10, 'Ion-Drive');
 insert into Receipt (Id, UserProfileId, ExoPlanetId, DepartureDate, ReturnDate, LogId, Paid, Mode) values (2, 1, 2, 1651017600, 1650240000, 2, 10.5, 'Warp-Drive');
 set identity_insert [Receipt] off
-
-set identity_insert [Review] on
-insert into Review (Id, UserProfileId, ExoPlanetId, CreateDate, EditDate, Message, Star) values (1, 1, 1, 1651017600, 1650240000, 'Ion-Drive', 2);
-insert into Review (Id, UserProfileId, ExoPlanetId, CreateDate, EditDate, Message, Star) values (2, 1, 1, 1651017600, 1650240000, 'Ion-Drive', 3);
-set identity_insert [Review] off
-
 
 set identity_insert [HubDrive] on
 insert into HubDrive (Id, Name, Detail, CardDetail, Image) values (1, 'Central InterPlanetary Hub', 'The Hub is the largest', 'Largest Artificial Structure in the Galaxy', './Images/Hub.jpg');

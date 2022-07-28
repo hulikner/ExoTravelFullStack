@@ -66,15 +66,16 @@ namespace ExoTravelFullStack.Controllers
 
         // PUT api/<LogsController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Log log)
+        public IActionResult Update(int id, Log log)
         {
             var user = GetCurrentUserProfile();
-            log.UserProfileId = user.Id;
 
-            if (id != log.Id)
-            {
-                return BadRequest();
-            }
+            log.UserProfile = user;
+
+            //if (id != log.Id)
+            //{
+            //    return BadRequest();
+            //}
 
             _logRepository.Update(log);
             return NoContent();

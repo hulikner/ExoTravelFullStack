@@ -16,8 +16,11 @@ export const LogEditForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [log, setLog] = useState({
     id: "",
+    userProfileId: "",
+    exoPlanetId: "",
     departureDate: "",
     returnDate: "",
+    reviewId: "",
     mode: "",
   });
 
@@ -45,8 +48,11 @@ export const LogEditForm = () => {
 
     const editedLog = {
       id: +logId,
+      userProfileId: log.userProfileId,
+      exoPlanetId: log.exoPlanetId,
       departureDate: log.departureDate,
       returnDate: log.returnDate,
+      reviewId: log.reviewId,
       mode: log.mode,
     };
 

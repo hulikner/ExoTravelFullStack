@@ -42,18 +42,6 @@ CREATE TABLE [ExoPlanet] (
 )
 GO
 
-CREATE TABLE [Receipt] (
-  [Id] integer PRIMARY KEY IDENTITY(1, 1),
-  [UserProfileId] integer NOT NULL,
-  [ExoPlanetId] integer NOT NULL,
-  [DepartureDate] integer NOT NULL,
-  [ReturnDate] integer NOT NULL,
-  [LogId] integer NOT NULL,
-  [Paid] integer NOT NULL,
-  [Mode] nvarchar(50) NOT NULL
-)
-GO
-
 CREATE TABLE [Review] (
   [Id] integer PRIMARY KEY IDENTITY(1, 1),
   [UserProfileId] integer NOT NULL,
@@ -72,6 +60,18 @@ CREATE TABLE [Log] (
   [DepartureDate] integer NOT NULL,
   [ReturnDate] integer NOT NULL,
   [ReviewId] integer,
+  [Mode] nvarchar(50) NOT NULL
+)
+GO
+
+CREATE TABLE [Receipt] (
+  [Id] integer PRIMARY KEY IDENTITY(1, 1),
+  [UserProfileId] integer NOT NULL,
+  [ExoPlanetId] integer NOT NULL,
+  [DepartureDate] integer NOT NULL,
+  [ReturnDate] integer NOT NULL,
+  [LogId] integer NOT NULL,
+  [Paid] integer NOT NULL,
   [Mode] nvarchar(50) NOT NULL
 )
 GO
@@ -99,18 +99,9 @@ GO
 ALTER TABLE [Receipt] ADD FOREIGN KEY ([ExoPlanetId]) REFERENCES [ExoPlanet] ([Id])
 GO
 
-ALTER TABLE [Receipt] ADD FOREIGN KEY ([LogId]) REFERENCES [Log] ([Id])
+ALTER TABLE [Receipt] ADD FOREIGN KEY ([LogId]) REFERENCES [Log] ([Id]) ON DELETE CASCADE
 GO
 
-ALTER TABLE [Review] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
-GO
 
-ALTER TABLE [Review] ADD FOREIGN KEY ([ExoPlanetId]) REFERENCES [ExoPlanet] ([Id])
-GO
 
-ALTER TABLE [Log] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
-GO
-
-ALTER TABLE [Log] ADD FOREIGN KEY ([ExoPlanetId]) REFERENCES [ExoPlanet] ([Id])
-GO
 

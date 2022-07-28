@@ -55,7 +55,6 @@ console.log(fireId)
     rating: "",
   });
   const [log, setLog] = useState({
-    userProfileId: "",
     departureDate: "",
     returnDate: "",
     exoPlanetId: Number(exoPlanetId),

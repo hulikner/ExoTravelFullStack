@@ -243,13 +243,14 @@ namespace ExoTravelFullStack.Repositories
                 {
                     cmd.CommandText = @"UPDATE Log
                                            SET UserProfileId = @userProfileId, 
+                                               ExoPlanetId = @exoPlanetId,
                                                DepartureDate = @departureDate, 
                                                ReturnDate = @returnDate, 
                                                ReviewId = @reviewId,
                                                Mode = @mode
                                          WHERE Id = @id";
                     DbUtils.AddParameter(cmd, "@userProfileId", log.UserProfileId);
-                    //DbUtils.AddParameter(cmd, "@exoPlanetId", log.ExoPlanetId);
+                    DbUtils.AddParameter(cmd, "@exoPlanetId", log.ExoPlanetId);
                     DbUtils.AddParameter(cmd, "@departureDate", log.DepartureDate);
                     DbUtils.AddParameter(cmd, "@returnDate", log.ReturnDate);
                     DbUtils.AddParameter(cmd, "@reviewId", log.ReviewId);

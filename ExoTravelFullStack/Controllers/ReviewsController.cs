@@ -4,18 +4,24 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ExoTravelFullStack.Models;
 using ExoTravelFullStack.Repositories;
+using System.Security.Claims;
+
 
 namespace ExoTravelFullStack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ReviewsController : ControllerBase
     {
         private readonly IReviewRepository _reviewRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
-        public ReviewsController(IReviewRepository reviewRepository)
+
+        public ReviewsController(IReviewRepository reviewRepository, IUserProfileRepository userProfileRepository)
         {
             _reviewRepository = reviewRepository;
+            _userProfileRepository = userProfileRepository;
         }
 
         // GET: api/<ReviewsController>
@@ -54,10 +60,12 @@ namespace ExoTravelFullStack.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Review review)
         {
-            if (id != review.Id)
-            {
-                return BadRequest();
-            }
+            var user = GetCurrentUserProfile();
+            review.UserProfile = user;
+            //if (id != review.Id)
+            //{
+            //    return BadRequest();
+            //}
 
             _reviewRepository.Update(review);
             return NoContent();
@@ -70,6 +78,12 @@ namespace ExoTravelFullStack.Controllers
         {
             _reviewRepository.Delete(id);
             return NoContent();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }
