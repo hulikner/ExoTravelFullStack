@@ -4,18 +4,23 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using ExoTravelFullStack.Models;
 using ExoTravelFullStack.Repositories;
+using System.Security.Claims;
+
 
 namespace ExoTravelFullStack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LogsController : ControllerBase
     {
         private readonly ILogRepository _logRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
-        public LogsController(ILogRepository logRepository)
+        public LogsController(ILogRepository logRepository, IUserProfileRepository userProfileRepository)
         {
             _logRepository = logRepository;
+            _userProfileRepository = userProfileRepository;
         }
 
         // GET: api/<LogsController>
@@ -25,10 +30,11 @@ namespace ExoTravelFullStack.Controllers
             return Ok(_logRepository.GetAllLogs());
         }
 
-        [HttpGet("GetLogsByUserProfileId/{id}")]
-        public IActionResult GetLogsByUserProfileId(int id)
+        [HttpGet("GetLogsByUserProfileId")]
+        public IActionResult GetLogsByUserProfileId()
         {
-            var log = _logRepository.GetLogsByUserProfileId(id);
+            var user = GetCurrentUserProfile();
+            var log = _logRepository.GetLogsByUserProfileId(user.Id);
             if (log == null)
             {
                 return NotFound();
@@ -52,18 +58,24 @@ namespace ExoTravelFullStack.Controllers
         [HttpPost]
         public IActionResult Post(Log log)
         {
+            var user = GetCurrentUserProfile();
+            log.UserProfileId = user.Id;
             _logRepository.Add(log);
             return CreatedAtAction("Get", new { id = log.Id }, log);
         }
 
         // PUT api/<LogsController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Log log)
+        public IActionResult Update(int id, Log log)
         {
-            if (id != log.Id)
-            {
-                return BadRequest();
-            }
+            var user = GetCurrentUserProfile();
+
+            log.UserProfile = user;
+
+            //if (id != log.Id)
+            //{
+            //    return BadRequest();
+            //}
 
             _logRepository.Update(log);
             return NoContent();
@@ -76,6 +88,12 @@ namespace ExoTravelFullStack.Controllers
         {
             _logRepository.Delete(id);
             return NoContent();
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

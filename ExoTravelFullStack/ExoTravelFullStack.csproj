@@ -5,10 +5,6 @@
   </PropertyGroup>
   
 <ItemGroup>
-    <Content Remove="appsettings.Development..json" />
-  </ItemGroup>
-  
-<ItemGroup>
   <_WebToolingArtifacts Remove="Properties\launchSettings.json" />
 </ItemGroup>
   
@@ -17,15 +13,14 @@
 </ItemGroup>
 
   <ItemGroup>
-    <None Include="appsettings.Development..json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1development_1json__JsonSchema="https://json.schemastore.org/appsettings.json" /></VisualStudio></ProjectExtensions>
 
 </Project>
+
+
+

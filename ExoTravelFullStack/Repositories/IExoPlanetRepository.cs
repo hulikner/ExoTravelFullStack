@@ -6,10 +6,10 @@ namespace ExoTravelFullStack.Repositories
     public interface IExoPlanetRepository
     {
         List<ExoPlanet> GetAllExoPlanets();
-        List<ExoPlanet> GetAllExoPlanetsByLightYearAsc();
-        List<ExoPlanet> GetAllExoPlanetsByLightYearDesc();
-        List<ExoPlanet> GetAllExoPlanetsByRatingAsc();
-        List<ExoPlanet> GetAllExoPlanetsByRatingDesc();
+        List<ExoPlanet> GetByLightYearAsc();
+        List<ExoPlanet> GetByLightYearDesc();
+        List<ExoPlanet> GetByRatingAsc();
+        List<ExoPlanet> GetByRatingDesc();
         void Add(ExoPlanet exoPlanet);
         ExoPlanet GetExoPlanetById(int id);
         void Update(ExoPlanet exoPlanet);

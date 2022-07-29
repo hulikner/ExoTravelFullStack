@@ -31,8 +31,8 @@ export default function ApplicationViews({ isLoggedIn, getLoggedInUser }) {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="/home" element={<Home isLoggedIn={isLoggedIn} getLoggedInUser={getLoggedInUser} />} />
-          <Route path="/exoPlanets" element={<ExoPlanetList />} />
-          <Route path="/exoPlanets/:exoPlanetId" element={<ExoPlanetDetail />} />
+          <Route path="/exoPlanets" element={<ExoPlanetList isLoggedIn={isLoggedIn} />} />
+          <Route path="/exoPlanets/:exoPlanetId" element={<ExoPlanetDetail isLoggedIn={isLoggedIn} />} />
           <Route path="/exoPlanets/:exoPlanetId/reviews" element={<ReviewList />} />
           <Route path="/exoPlanets/:exoPlanetId/reviews/create" element={<ReviewForm />} />
           <Route path="/exoPlanets/:exoPlanetId/reviews/:reviewId/edit" element={<ReviewEditForm />} />

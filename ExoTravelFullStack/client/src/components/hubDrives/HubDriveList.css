@@ -22,7 +22,7 @@ div.hubDrive-container {
     -webkit-text-stroke-color: black;
   }
   
-  .card-hubDrive-pic {
+  .card-hubDrive-image {
     image-rendering: auto;
     width: auto;
     height: 200px;
@@ -31,6 +31,7 @@ div.hubDrive-container {
     text-decoration: none;
     max-width: 300px;
     margin: 20px;
+    object-fit: cover;
   }
   
   .card-hubDrive-cardDetail {

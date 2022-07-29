@@ -89,9 +89,9 @@ namespace ExoTravelFullStack.Repositories
                                 ExoPlanet = new ExoPlanet()
                                 {
                                     Name = DbUtils.GetString(reader, "Name"),
-                                    Mass = DbUtils.GetInt(reader, "Mass"),
-                                    Radius = DbUtils.GetInt(reader, "Radius"),
-                                    EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                    Mass = DbUtils.GetDec(reader, "Mass"),
+                                    Radius = DbUtils.GetDec(reader, "Radius"),
+                                    EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                     Orbit = DbUtils.GetInt(reader, "Orbit"),
                                     LightYears = DbUtils.GetInt(reader, "LightYears"),
                                     Detail = DbUtils.GetString(reader, "Detail"),
@@ -185,9 +185,7 @@ namespace ExoTravelFullStack.Repositories
                                                Star = @star,
                                                Message = @message, 
                                                UserProfileId = @userProfileId, 
-                                               CreateDate = @createDate,
-                                               Detail = @detail,
-                                               Rating = @rating
+                                               CreateDate = @createDate
                                          WHERE Id = @id";
                     DbUtils.AddParameter(cmd, "@exoPlanetId", review.ExoPlanetId);
                     DbUtils.AddParameter(cmd, "@editDate", review.EditDate);

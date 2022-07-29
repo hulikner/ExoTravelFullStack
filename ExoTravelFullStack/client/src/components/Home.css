@@ -62,9 +62,11 @@
   display: none;
 }
 
+
+
 .exoPlanet-home-card {
   display: flex;
-  max-height: 79.75vh;
+  max-height: 90vh;
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-styles: none;
@@ -74,7 +76,7 @@
   border-radius: 20px;
   color: #c0c0c0;
   height: auto;
-  margin: -40px;
+  margin: -33px;
 }
 
 .exoPlanet-home-img {
@@ -93,11 +95,11 @@
   border: 5px solid #f4100f;
   box-shadow: 5px 5px 5px 5px black;
   border-radius: 20px;
-  height: 50%;
+  height: 200px;
   text-decoration: none;
   color: #c0c0c0;
   padding: 10px;
-  width: 20vw;
+  width: 22vw;
   font-size: 20px;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
@@ -151,13 +153,14 @@ h2.log-home-header {
   border: 5px solid #f4100f;
   border-radius: 20px;
   box-shadow: 5px 5px 5px 5px black;
+  height:200px;
   justify-content: space-evenly;
   align-items: center;
-  width: 20vw;
+  width: 22vw;
   text-decoration: none;
   color: #c0c0c0;
-  margin: 20px;
-  padding: 10px;
+  margin: 16px;
+  padding: 0px;
   font-size: 20px;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
@@ -166,7 +169,7 @@ h2.log-home-header {
 
 .log-home-card {
   display: flex;
-  max-height: 79.75vh;
+  max-height: 90vh;
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-styles: none;
@@ -175,7 +178,7 @@ h2.log-home-header {
   flex-basis: 45%;
   border-radius: 20px;
   color: #c0c0c0;
-  margin: -40px;
+  margin: -35px;
 }
 
 .log-home-img-container {
@@ -232,13 +235,13 @@ h2.receipt-home-header {
   display: flex;
   flex-direction: column;
   max-width: 25vw;
-  max-height: 79.75vh;
+  max-height: 90vh;
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-styles: none;
+  align-items: center;
 }
-
-.receipt-home-link {
+.receipt-home-cont{
   display: flex;
   flex-direction: row;
   border: 5px solid #f4100f;
@@ -246,16 +249,35 @@ h2.receipt-home-header {
   box-shadow: 5px 5px 5px 5px black;
   justify-content: space-evenly;
   align-items: center;
-  width: 20vw;
-  height: 20vh;
+  width: 22vw;
+  height: 200px;
   text-decoration: none;
   color: #c0c0c0;
-  margin: 20px;
+  margin: 16px;
   padding: 10px;
   font-size: 20px;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
   background: radial-gradient(ellipse at 50% 50%, rgba(119, 119, 114, 1) 0%, rgba(0, 0, 0, 0.97) 100%);
+}
+.receipt-home-link {
+  display: flex;
+  flex-direction: row;
+  /* border: 5px solid #f4100f; */
+  /* border-radius: 20px; */
+  /* box-shadow: 5px 5px 5px 5px black; */
+  justify-content: space-evenly;
+  align-items: center;
+  /* width: 22vw; */
+  /* height: 200px; */
+  text-decoration: none;
+  /* color: #c0c0c0; */
+  /* margin: 20px; */
+  padding: -15px;
+  font-size: 20px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  /* background: radial-gradient(ellipse at 50% 50%, rgba(119, 119, 114, 1) 0%, rgba(0, 0, 0, 0.97) 100%); */
 }
 
 .receipt-home-pic {
@@ -276,5 +298,5 @@ h2.receipt-home-header {
   display: flex;
   flex-direction: column;
   color: #c0c0c0;
-  align-items: center;
+  text-decoration: none;
 }

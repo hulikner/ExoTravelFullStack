@@ -1,55 +1,60 @@
 // Imports
+import { parse } from "date-fns";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { updateExoPlanet } from "../../modules/ExoPlanetManager";
+import { getExoPlanetById, updateExoPlanet } from "../../modules/ExoPlanetManager";
+import { getLogById } from "../../modules/LogManager";
 import { addReview, getReviewsByExoPlanet } from "../../modules/ReviewManager";
 import "./ReviewForm.css";
 
-export const defaultReview=(currentUser, exoPlanetId)=>
+export let defaultReview=(exoPlanetId)=>
 (
     {
-    id: "",
-    userId: currentUser,
-    date: new Date().getTime() / 1000,
-    exoPlanetId: Number(exoPlanetId),
+    createDate: parseInt(new Date().getTime() / 1000),
+    editDate: 1659038896,
+    exoPlanetId: +exoPlanetId,
     message: "",
-    stars: "",
+    star: 0
 }
 )
 export const ReviewForm = () => {
-    const currentUser = JSON.parse(sessionStorage.getItem("exoTravel_user"));
     // React-Router-DOM use
     const { exoPlanetId } = useParams();
-    
+    const logId = useParams();
+
     // State setState for all reviews
     const [allReviews, setAllReviews] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    const [review, setReview] = useState(defaultReview(currentUser, exoPlanetId));
+    let [review, setReview] = useState(defaultReview(exoPlanetId));
     const navigate = useNavigate();
 
-  const getStarTotal = (newStars) => {
+// console.log(logId)
+  const getStarTotal = (newStar) => {
     const reviewCount = +allReviews.length + 1;
-    let totalStars = +newStars;
-    allReviews.map((review) => (totalStars += +review.stars));
+    let totalStars = +newStar;
+    allReviews.map((review) => (totalStars += +review.star));
     return totalStars / reviewCount;
   };
-
-
+  
   const handleControlledInputChange = (t) => {
     const newReview = { ...review };
     let selectedVal = t.target.value;
     newReview[t.target.id] = selectedVal;
     setReview(newReview);
   };
-
+  
   const handleClickSaveEvent = (t) => {
     t.preventDefault();
-
-    if (review.message !== "" && review.stars) {
+    
+    if (review.message !== "" && review.star) {
       setIsLoading(true);
 
-      const newStarRating = getStarTotal(review.stars);
-      const exoPlanetObject = { id: +exoPlanetId, rating: +newStarRating };
+      const newStarRating = getStarTotal(+review.star);
+      const exoPlanetObject = { 
+        id: +exoPlanetId,
+        rating: +newStarRating };
+        review.star = Number(review.star);
+        console.log(review)
       updateExoPlanet(exoPlanetObject)
         .then(addReview(review))
         .then(() => navigate(`/exoPlanets/${+exoPlanetId}/reviews`));
@@ -85,15 +90,15 @@ export const ReviewForm = () => {
               />
             </fieldset>
             <fieldset className="review-fields">
-              <label htmlFor="stars">Number of Stars:</label>
-              <input type="number" min="1" max="5" id="stars" onChange={handleControlledInputChange} required className="form-control stars" placeholder="stars" value={review.stars} />
+              <label htmlFor="star">Number of star:</label>
+              <input type="number" min="1" max="5" id="star" onChange={handleControlledInputChange} required className="form-control star" placeholder="star" value={Number(review.star)} />
             </fieldset>
           </div>
           <div className="review-form-buttons">
             <button type="submit" className="submit-review-button" disabled={isLoading} onClick={handleClickSaveEvent}>
               Submit
             </button>
-            <button type="cancel" className="cancel-review-button" disabled={isLoading} onClick={() => navigate(`/itineraries`)}>
+            <button type="cancel" className="cancel-review-button" disabled={isLoading} onClick={() => navigate(`/logs`)}>
               Cancel
             </button>
           </div>

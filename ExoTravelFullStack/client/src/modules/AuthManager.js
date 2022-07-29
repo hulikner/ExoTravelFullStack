@@ -22,15 +22,14 @@ export const getUserById = (id) => {
 };
 
 const _saveUser = (userProfile) => {
-  return getToken().then((token) =>
-    fetch(_apiUrl, {
+  return fetch(_apiUrl, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        
         "Content-Type": "application/json"
       },
       body: JSON.stringify(userProfile)
-    }).then(resp => resp.json()));
+    }).then(resp => resp.json());
 };
 
 

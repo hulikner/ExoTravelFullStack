@@ -39,15 +39,15 @@ namespace ExoTravelFullStack.Repositories
                                 ExoPlanetId = DbUtils.GetInt(reader, "ExoPlanetId"),
                                 DepartureDate = DbUtils.GetInt(reader, "DepartureDate"),
                                 ReturnDate = DbUtils.GetInt(reader, "ReturnDate"),
-                                ReviewId = DbUtils.GetInt(reader, "ReviewId"),
+                                ReviewId = !reader.IsDBNull(reader.GetOrdinal( "ReviewId")) ? reader.GetInt32(reader.GetOrdinal("ReviewId")) : 0,
                                 Mode = DbUtils.GetString(reader, "Mode"),
                                 ExoPlanet = new ExoPlanet()
                                 {
                                     Id = DbUtils.GetInt(reader, "Id"),
                                     Name = DbUtils.GetString(reader, "Name"),
-                                    Mass = DbUtils.GetInt(reader, "Mass"),
-                                    Radius = DbUtils.GetInt(reader, "Radius"),
-                                    EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                    Mass = DbUtils.GetDec(reader, "Mass"),
+                                    Radius = DbUtils.GetDec(reader, "Radius"),
+                                    EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                     Orbit = DbUtils.GetInt(reader, "Orbit"),
                                     LightYears = DbUtils.GetInt(reader, "LightYears"),
                                     Detail = DbUtils.GetString(reader, "Detail"),
@@ -108,15 +108,15 @@ namespace ExoTravelFullStack.Repositories
                                 ExoPlanetId = DbUtils.GetInt(reader, "ExoPlanetId"),
                                 DepartureDate = DbUtils.GetInt(reader, "DepartureDate"),
                                 ReturnDate = DbUtils.GetInt(reader, "ReturnDate"),
-                                ReviewId = DbUtils.GetInt(reader, "ReviewId"),
+                                ReviewId = !reader.IsDBNull(reader.GetOrdinal("ReviewId")) ? (int)DbUtils.GetNullableInt(reader, "ReviewId") : 0,
                                 Mode = DbUtils.GetString(reader, "Mode"),
                                 ExoPlanet = new ExoPlanet()
                                 {
                                     Id = DbUtils.GetInt(reader, "Id"),
                                     Name = DbUtils.GetString(reader, "Name"),
-                                    Mass = DbUtils.GetInt(reader, "Mass"),
-                                    Radius = DbUtils.GetInt(reader, "Radius"),
-                                    EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                    Mass = DbUtils.GetDec(reader, "Mass"),
+                                    Radius = DbUtils.GetDec(reader, "Radius"),
+                                    EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                     Orbit = DbUtils.GetInt(reader, "Orbit"),
                                     LightYears = DbUtils.GetInt(reader, "LightYears"),
                                     Detail = DbUtils.GetString(reader, "Detail"),
@@ -159,7 +159,7 @@ namespace ExoTravelFullStack.Repositories
                     DbUtils.AddParameter(cmd, "@exoPlanetId", log.ExoPlanetId);
                     DbUtils.AddParameter(cmd, "@departureDate", log.DepartureDate);
                     DbUtils.AddParameter(cmd, "@returnDate", log.ReturnDate);
-                    DbUtils.AddParameter(cmd, "@reviewId", log.ReviewId);
+                    _ = cmd.Parameters.AddWithValue("@reviewId", log.ReviewId != null ? log.ReviewId : DBNull.Value);
                     DbUtils.AddParameter(cmd, "@mode", log.Mode);
                     log.Id = (int)cmd.ExecuteScalar();
                 };
@@ -179,7 +179,7 @@ namespace ExoTravelFullStack.Repositories
                 {
                     cmd.CommandText = @"SELECT l.Id, l.UserProfileId, l.ExoPlanetId, l.DepartureDate, l.ReturnDate, l.ReviewId, l.Mode,
                                                e.Name, e.Mass, e.Radius, e.EqTemp, e.Orbit, e.LightYears, e.Detail, e.Rating,
-                                               up.FirebaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId
+                                               up.FirebaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.ImageLocation, up.UserTypeId
                                         FROM Log l
                                         LEFT JOIN UserProfile up ON l.UserProfileId = up.Id
                                         LEFT JOIN ExoPlanet e ON l.ExoPlanetId = e.Id
@@ -204,9 +204,9 @@ namespace ExoTravelFullStack.Repositories
                                 {
                                     Id = DbUtils.GetInt(reader, "ExoPlanetId"),
                                     Name = DbUtils.GetString(reader, "Name"),
-                                    Mass = DbUtils.GetInt(reader, "Mass"),
-                                    Radius = DbUtils.GetInt(reader, "Radius"),
-                                    EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                    Mass = DbUtils.GetDec(reader, "Mass"),
+                                    Radius = DbUtils.GetDec(reader, "Radius"),
+                                    EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                     Orbit = DbUtils.GetInt(reader, "Orbit"),
                                     LightYears = DbUtils.GetInt(reader, "LightYears"),
                                     Detail = DbUtils.GetString(reader, "Detail"),
@@ -220,10 +220,11 @@ namespace ExoTravelFullStack.Repositories
                                     LastName = DbUtils.GetString(reader, "LastName"),
                                     DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                     Email = DbUtils.GetString(reader, "Email"),
-                                    CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                                    //CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                                     ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                                     UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                                }
+                                },
+                                
                             };
                         }
                         return log;
@@ -247,7 +248,7 @@ namespace ExoTravelFullStack.Repositories
                                                DepartureDate = @departureDate, 
                                                ReturnDate = @returnDate, 
                                                ReviewId = @reviewId,
-                                               Mode = @mode,
+                                               Mode = @mode
                                          WHERE Id = @id";
                     DbUtils.AddParameter(cmd, "@userProfileId", log.UserProfileId);
                     DbUtils.AddParameter(cmd, "@exoPlanetId", log.ExoPlanetId);

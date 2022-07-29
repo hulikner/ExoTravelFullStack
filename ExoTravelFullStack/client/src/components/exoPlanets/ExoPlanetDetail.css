@@ -67,7 +67,7 @@
     padding-right: 10px;
   }
   
-  .submit-itinerary-button {
+  .submit-Log-button {
     display: flex;
     background: radial-gradient(ellipse at 50% 50%, rgba(119, 119, 114, 1) 0%, rgba(0, 0, 0, 0.97) 100%);
     border: 5px solid #f4100f;

@@ -19,7 +19,7 @@ namespace ExoTravelFullStack.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT r.Id, r.UserProfileId, r.ExoPlanetId, r.DepartureDate, r.ReturnDate, r.LogId, r.Paid, r.Mode,
-                                               up.FireBaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
+                                               up.FireBaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.ImageLocation, up.UserTypeId,
                                                ex.Name, ex.Mass, ex.Radius, ex.EqTemp, ex.Orbit, ex.LightYears, ex.Detail, ex.Rating,
                                                l.ReviewId,
                                                ut.Name AS UserTypeName
@@ -55,7 +55,7 @@ namespace ExoTravelFullStack.Repositories
                                     LastName = DbUtils.GetString(reader, "LastName"),
                                     DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                     Email = DbUtils.GetString(reader, "Email"),
-                                    CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                                    //CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                                     ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                                 },
                                 Log = new Log()
@@ -65,9 +65,9 @@ namespace ExoTravelFullStack.Repositories
                                 ExoPlanet = new ExoPlanet()
                                 {
                                     Name = DbUtils.GetString(reader, "Name"),
-                                    Mass = DbUtils.GetInt(reader, "Mass"),
-                                    Radius = DbUtils.GetInt(reader, "Radius"),
-                                    EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                    Mass = DbUtils.GetDec(reader, "Mass"),
+                                    Radius = DbUtils.GetDec(reader, "Radius"),
+                                    EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                     Orbit = DbUtils.GetInt(reader, "Orbit"),
                                     LightYears = DbUtils.GetInt(reader, "LightYears"),
                                     Detail = DbUtils.GetString(reader, "Detail"),
@@ -138,9 +138,9 @@ namespace ExoTravelFullStack.Repositories
                                 ExoPlanet = new ExoPlanet()
                                 {
                                     Name = DbUtils.GetString(reader, "Name"),
-                                    Mass = DbUtils.GetInt(reader, "Mass"),
-                                    Radius = DbUtils.GetInt(reader, "Radius"),
-                                    EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                    Mass = DbUtils.GetDec(reader, "Mass"),
+                                    Radius = DbUtils.GetDec(reader, "Radius"),
+                                    EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                     Orbit = DbUtils.GetInt(reader, "Orbit"),
                                     LightYears = DbUtils.GetInt(reader, "LightYears"),
                                     Detail = DbUtils.GetString(reader, "Detail"),
@@ -191,7 +191,7 @@ namespace ExoTravelFullStack.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT r.Id, r.UserProfileId, r.ExoPlanetId, r.DepartureDate, r.ReturnDate, r.LogId, r.Paid, r.Mode,
-                                               up.FireBaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
+                                               up.FireBaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.ImageLocation, up.UserTypeId,
                                                ex.Name, ex.Mass, ex.Radius, ex.EqTemp, ex.Orbit, ex.LightYears, ex.Detail, ex.Rating,
                                                l.ReviewId,
                                                ut.Name AS UserTypeName
@@ -229,7 +229,7 @@ namespace ExoTravelFullStack.Repositories
                                     LastName = DbUtils.GetString(reader, "LastName"),
                                     DisplayName = DbUtils.GetString(reader, "DisplayName"),
                                     Email = DbUtils.GetString(reader, "Email"),
-                                    CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                                    //CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                                     ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                                 },
                                 Log = new Log()
@@ -239,9 +239,9 @@ namespace ExoTravelFullStack.Repositories
                                 ExoPlanet = new ExoPlanet()
                                 {
                                     Name = DbUtils.GetString(reader, "Name"),
-                                    Mass = DbUtils.GetInt(reader, "Mass"),
-                                    Radius = DbUtils.GetInt(reader, "Radius"),
-                                    EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                    Mass = DbUtils.GetDec(reader, "Mass"),
+                                    Radius = DbUtils.GetDec(reader, "Radius"),
+                                    EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                     Orbit = DbUtils.GetInt(reader, "Orbit"),
                                     LightYears = DbUtils.GetInt(reader, "LightYears"),
                                     Detail = DbUtils.GetString(reader, "Detail"),
@@ -275,7 +275,7 @@ namespace ExoTravelFullStack.Repositories
                                         LEFT JOIN UserType ut ON up.UserTypeId = ut.Id
                                         LEFT JOIN ExoPlanet ex ON r.ExoPlanetId = ex.Id
                                         LEFT JOIN Log l ON r.LogId = l.Id
-                                        WHERE r.Logid = @id";
+                                        WHERE r.LogId = @id";
 
                     DbUtils.AddParameter(cmd, "@id", id);
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -314,9 +314,9 @@ namespace ExoTravelFullStack.Repositories
                                 ExoPlanet = new ExoPlanet()
                                 {
                                     Name = DbUtils.GetString(reader, "Name"),
-                                    Mass = DbUtils.GetInt(reader, "Mass"),
-                                    Radius = DbUtils.GetInt(reader, "Radius"),
-                                    EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                    Mass = DbUtils.GetDec(reader, "Mass"),
+                                    Radius = DbUtils.GetDec(reader, "Radius"),
+                                    EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                     Orbit = DbUtils.GetInt(reader, "Orbit"),
                                     LightYears = DbUtils.GetInt(reader, "LightYears"),
                                     Detail = DbUtils.GetString(reader, "Detail"),

@@ -1,22 +1,47 @@
 // Imports
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getExoPlanetById } from "../../modules/ExoPlanetManager";
 import { useParams, useNavigate } from "react-router-dom";
 import { epochDateConverter } from "../util/epochDateConverter";
 import { addLog } from "../../modules/LogManager";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpaceShuttle } from "@fortawesome/free-solid-svg-icons";
-// import Rating from "@mui/material/Rating";
+import { getUserByFirebaseId } from '../../modules/AuthManager';
+import firebase from "firebase/app";
+import Rating from "@mui/material/Rating";
 import "./ExoPlanetDetail.css";
 
 // Exo-Planet details page
-export const ExoPlanetDetail = () => {
+export const ExoPlanetDetail = (isLoggedIn) => {
   // React-Router-DOM uses
   const navigate = useNavigate();
   const { exoPlanetId } = useParams();
+  const [fireId, setFireId] = useState([]);
+console.log(fireId)
 
-  // Get user
-  const currentUser = JSON.parse(sessionStorage.getItem("exoTravel_user"));
+
+//   // Get user
+// //   const currentUser = JSON.parse(sessionStorage.getItem("exoTravel_user"));
+  const getMeFire = useCallback(()=>{
+    try{
+        var fireBaseId = firebase.auth().currentUser.uid;
+
+    }
+    
+    catch(e){
+        console.log(e.message)
+    }finally{
+        getUserByFirebaseId(fireBaseId).then(setFireId)
+    }
+    
+    
+},[fireId])
+
+  
+  useEffect( ()  => {
+    getMeFire()
+  }, []);
+  // Gets all the logs by user for Home page
 
   // State setState
   const [isLoading, setIsLoading] = useState(false);
@@ -29,41 +54,41 @@ export const ExoPlanetDetail = () => {
     lightYears: "",
     rating: "",
   });
-  const [Log, setLog] = useState({
-    id: "",
-    userId: currentUser,
-    departure: "",
-    return: "",
+  const [log, setLog] = useState({
+    departureDate: "",
+    returnDate: "",
     exoPlanetId: Number(exoPlanetId),
+    reviewId: 0,
+    mode: 0,
   });
 
   // Formatting for all the dates from epoch time to readable date
-  const formattedDeparture = Log?.departure ? epochDateConverter(Log.departure, "yyyy-MM-dd") : "";
-  const formattedReturn = Log?.return ? epochDateConverter(Log.return, "yyyy-MM-dd") : "";
+  const formattedDepartureDate = log?.departureDate ? epochDateConverter(log.departureDate, "yyyy-MM-dd") : "";
+  const formattedReturnDate = log?.returnDate ? epochDateConverter(log.returnDate, "yyyy-MM-dd") : "";
 
-  // When a departure date is chosen, it gets set in epoch time in itineraries
-  const handleControlledDepartureChange = (i) => {
-    const isDeparture = i.target.id === "departure";
-    let epochDeparture = "";
-    if (i.target.id === "departure") {
-      epochDeparture = new Date(i.target.value).getTime() / 1000;
+  // When a departureDate date is chosen, it gets set in epoch time in itineraries
+  const handleControlleddepartureDateChange = (i) => {
+    const isDepartureDate = i.target.id === "departureDate";
+    let epochDepartureDate = "";
+    if (i.target.id === "departureDate") {
+      epochDepartureDate = new Date(i.target.value).getTime() / 1000;
     }
-    const newLog = { ...Log };
-    let selectedVal = isDeparture ? epochDeparture : i.target.value;
+    const newLog = { ...log };
+    let selectedVal = isDepartureDate ? epochDepartureDate : i.target.value;
 
     newLog[i.target.id] = selectedVal;
     setLog(newLog);
   };
 
-  // When a return date is chosen, it gets set in epoch time in itineraries
-  const handleControlledReturnChange = (i) => {
-    const isReturn = i.target.id === "return";
-    let epochReturn = "";
-    if (i.target.id === "return") {
-      epochReturn = new Date(i.target.value).getTime() / 1000;
+  // When a returnDate date is chosen, it gets set in epoch time in itineraries
+  const handleControlledreturnDateChange = (i) => {
+    const isReturnDate = i.target.id === "returnDate";
+    let epochReturnDate = "";
+    if (i.target.id === "returnDate") {
+      epochReturnDate = new Date(i.target.value).getTime() / 1000;
     }
-    const newLog = { ...Log };
-    let selectedVal = isReturn ? epochReturn : i.target.value;
+    const newLog = { ...log };
+    let selectedVal = isReturnDate ? epochReturnDate : i.target.value;
 
     newLog[i.target.id] = selectedVal;
     setLog(newLog);
@@ -72,9 +97,10 @@ export const ExoPlanetDetail = () => {
   // When all fields have been filled out and save is clicked, adds the Log and navigates to the Log list
   const handleClickSaveEvent = (i) => {
     i.preventDefault();
-    if (Log.departure !== "" && Log.return !== "" && Log.mode !== "") {
+    if (log.departureDate !== "" && log.returnDate !== "" && log.mode !== "") {
       setIsLoading(true);
-      addLog(Log).then(() => navigate("/itineraries"));
+      console.log(log)
+      addLog(log).then(() => navigate("/logs"));
     } else {
       window.alert("Complete Each Field");
     }
@@ -82,19 +108,19 @@ export const ExoPlanetDetail = () => {
 
   // Handles which mode of transportation they chose and sets it in itineraries
   const handleModeChange1 = (i) => {
-    const newLog = { ...Log };
+    const newLog = { ...log };
     let selectedVal = i ? 0 : "Ion-Drive";
     newLog.mode = selectedVal;
     setLog(newLog);
   };
   const handleModeChange2 = (i) => {
-    const newLog = { ...Log };
+    const newLog = { ...log };
     let selectedVal = i ? 0 : "Warp-Drive";
     newLog.mode = selectedVal;
     setLog(newLog);
   };
   const handleModeChange3 = (i) => {
-    const newLog = { ...Log };
+    const newLog = { ...log };
     let selectedVal = i ? 0 : "Wormhole-Drive";
     newLog.mode = selectedVal;
     setLog(newLog);
@@ -106,7 +132,7 @@ export const ExoPlanetDetail = () => {
       setExoPlanet(exoPlanet);
     });
   }, [exoPlanetId]);
-
+console.log(exoPlanet)
   // Details info being sent to the DOM
   return (
     <div className="exoPlanetContainer">
@@ -137,7 +163,7 @@ export const ExoPlanetDetail = () => {
           </div>
         </div>
         <div className="card-exoPlanet-starRating">
-          {/* <Rating style={{ color: "#f4100f" }} value={exoPlanet.rating} readOnly />{" "} */}
+          <Rating style={{ color: "#f4100f" }} value={+exoPlanet.rating} readOnly />{" "}
         </div>
       </section>
       </div>
@@ -146,49 +172,49 @@ export const ExoPlanetDetail = () => {
       </div>
       <div className="detailsContainer">
         <div className="exoPlanet__fields">
-          <label htmlFor="departure">Departure Date: </label>
-          <input type="date" id="departure" onChange={handleControlledDepartureChange} required className="form-control departure " placeholder="exoPlanet departure" value={formattedDeparture} />
+          <label htmlFor="departureDate">Departure Date: </label>
+          <input type="date" id="departureDate" onChange={handleControlleddepartureDateChange} required className="form-control departureDate " placeholder="exoPlanet departureDate" value={formattedDepartureDate} />
         </div>
         <div className="exoPlanet__fields">
-          <label htmlFor="return">Return Date: </label>
-          <input type="date" id="return" onChange={handleControlledReturnChange} required className="form-control return " placeholder="exoPlanet return" value={formattedReturn} />
+          <label htmlFor="returnDate">Return Date: </label>
+          <input type="date" id="returnDate" onChange={handleControlledreturnDateChange} required className="form-control returnDate " placeholder="exoPlanet returnDate" value={formattedReturnDate} />
         </div>
       </div>
       <div className="mode-buttons">
-        {Log.mode === "Ion-Drive" ? (
-          <button onClick={() => handleModeChange1(Log.mode)} className="ion-select">
+        {log.mode === "Ion-Drive" ? (
+          <button onClick={() => handleModeChange1(log.mode)} className="ion-select">
             {" "}
             Ion-Drive
             <FontAwesomeIcon icon={faSpaceShuttle} />
           </button>
         ) : (
-          <button onClick={() => handleModeChange1(Log.mode)} className="ion-not-select">
+          <button onClick={() => handleModeChange1(log.mode)} className="ion-not-select">
             {" "}
             Ion-Drive
             <FontAwesomeIcon icon={faSpaceShuttle} />
           </button>
         )}
-        {Log.mode === "Warp-Drive" ? (
-          <button onClick={() => handleModeChange2(Log.mode)} className="warp-btn">
+        {log.mode === "Warp-Drive" ? (
+          <button onClick={() => handleModeChange2(log.mode)} className="warp-btn">
             {" "}
             Warp-Drive
             <FontAwesomeIcon icon={faSpaceShuttle} />
           </button>
         ) : (
-          <button onClick={() => handleModeChange2(Log.mode)} className="warp-not-btn">
+          <button onClick={() => handleModeChange2(log.mode)} className="warp-not-btn">
             {" "}
             Warp-Drive
             <FontAwesomeIcon icon={faSpaceShuttle} />
           </button>
         )}
-        {Log.mode === "Wormhole-Drive" ? (
-          <button onClick={() => handleModeChange3(Log.mode)} className="wormhole-selected">
+        {log.mode === "Wormhole-Drive" ? (
+          <button onClick={() => handleModeChange3(log.mode)} className="wormhole-selected">
             {" "}
             Wormhole-Drive
             <FontAwesomeIcon icon={faSpaceShuttle} />
           </button>
         ) : (
-          <button onClick={() => handleModeChange3(Log.mode)} className="wormhole-not-selected">
+          <button onClick={() => handleModeChange3(log.mode)} className="wormhole-not-selected">
             {" "}
             Wormhole-Drive
             <FontAwesomeIcon icon={faSpaceShuttle} />

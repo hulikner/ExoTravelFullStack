@@ -13,8 +13,13 @@ export const ReviewEditForm = () => {
   // State setState
   const [isLoading, setIsLoading] = useState(false);
   const [review, setReview] = useState({
+    id: "",
+    userProfileId: "",
+    exoPlanetId: "",
+    createDate: "",
+    editDate: "",
+    star: "",
     message: "",
-    stars: "",
   });
 
   // Handles the changes in fields when user selects field
@@ -29,12 +34,16 @@ export const ReviewEditForm = () => {
     setIsLoading(true);
 
     const editedReview = {
-      id: +reviewId,
+      id: review.id,
+      userProfileId: review.userProfileId,
+      exoPlanetId: review.exoPlanetId,
+      createDate: review.createDate,
+      editDate: parseInt(new Date().getTime() / 1000),
+      star: review.star,
       message: review.message,
-      stars: +review.stars,
-      editDate: new Date().getTime() / 1000,
     };
-    updateReview(editedReview).then(() => navigate(`/exoPlanets/${review.exoPlanetId}/reviews`));
+    console.log(editedReview)
+    updateReview(editedReview).then(() => navigate(`/exoPlanets/${editedReview.exoPlanetId}/reviews`));
   };
 
   // Gets review by id and sets
@@ -59,8 +68,8 @@ export const ReviewEditForm = () => {
           </fieldset>
           <fieldset className="review-edit-fields">
             <div className="review-edit-stars">
-              <label htmlFor="stars">Number of Stars:</label>
-              <input type="text" max='5' id="stars" onChange={handleFieldChange} required className="form-control-stars " placeholder="Number of Stars" value={review.stars} />
+              <label htmlFor="star">Number of Stars:</label>
+              <input type="text" max='5' id="star" onChange={handleFieldChange} required className="form-control-star " placeholder="Number of Stars" value={review.star} />
             </div>
           </fieldset>
           <div className="edit-review-save-cancel">

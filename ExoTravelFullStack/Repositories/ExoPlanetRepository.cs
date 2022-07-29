@@ -29,9 +29,9 @@ namespace ExoTravelFullStack.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 Name = DbUtils.GetString(reader, "Name"),
-                                Mass = DbUtils.GetInt(reader, "Mass"),
-                                Radius = DbUtils.GetInt(reader, "Radius"),
-                                EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                Mass = DbUtils.GetDec(reader, "Mass"),
+                                Radius = DbUtils.GetDec(reader, "Radius"),
+                                EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                 Orbit = DbUtils.GetInt(reader, "Orbit"),
                                 LightYears = DbUtils.GetInt(reader, "LightYears"),
                                 Detail = DbUtils.GetString(reader, "Detail"),
@@ -45,7 +45,7 @@ namespace ExoTravelFullStack.Repositories
             }
         }
 
-        public List<ExoPlanet> GetAllExoPlanetsByLightYearAsc()
+        public List<ExoPlanet> GetByLightYearAsc()
         {
             using (SqlConnection conn = Connection)
             {
@@ -65,9 +65,9 @@ namespace ExoTravelFullStack.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 Name = DbUtils.GetString(reader, "Name"),
-                                Mass = DbUtils.GetInt(reader, "Mass"),
-                                Radius = DbUtils.GetInt(reader, "Radius"),
-                                EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                Mass = DbUtils.GetDec(reader, "Mass"),
+                                Radius = DbUtils.GetDec(reader, "Radius"),
+                                EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                 Orbit = DbUtils.GetInt(reader, "Orbit"),
                                 LightYears = DbUtils.GetInt(reader, "LightYears"),
                                 Detail = DbUtils.GetString(reader, "Detail"),
@@ -81,7 +81,7 @@ namespace ExoTravelFullStack.Repositories
             }
         }
 
-        public List<ExoPlanet> GetAllExoPlanetsByLightYearDesc()
+        public List<ExoPlanet> GetByLightYearDesc()
         {
             using (SqlConnection conn = Connection)
             {
@@ -101,9 +101,9 @@ namespace ExoTravelFullStack.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 Name = DbUtils.GetString(reader, "Name"),
-                                Mass = DbUtils.GetInt(reader, "Mass"),
-                                Radius = DbUtils.GetInt(reader, "Radius"),
-                                EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                Mass = DbUtils.GetDec(reader, "Mass"),
+                                Radius = DbUtils.GetDec(reader, "Radius"),
+                                EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                 Orbit = DbUtils.GetInt(reader, "Orbit"),
                                 LightYears = DbUtils.GetInt(reader, "LightYears"),
                                 Detail = DbUtils.GetString(reader, "Detail"),
@@ -117,7 +117,7 @@ namespace ExoTravelFullStack.Repositories
             }
         }
 
-        public List<ExoPlanet> GetAllExoPlanetsByRatingAsc()
+        public List<ExoPlanet> GetByRatingAsc()
         {
             using (SqlConnection conn = Connection)
             {
@@ -137,9 +137,9 @@ namespace ExoTravelFullStack.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 Name = DbUtils.GetString(reader, "Name"),
-                                Mass = DbUtils.GetInt(reader, "Mass"),
-                                Radius = DbUtils.GetInt(reader, "Radius"),
-                                EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                Mass = DbUtils.GetDec(reader, "Mass"),
+                                Radius = DbUtils.GetDec(reader, "Radius"),
+                                EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                 Orbit = DbUtils.GetInt(reader, "Orbit"),
                                 LightYears = DbUtils.GetInt(reader, "LightYears"),
                                 Detail = DbUtils.GetString(reader, "Detail"),
@@ -153,7 +153,7 @@ namespace ExoTravelFullStack.Repositories
             }
         }
 
-        public List<ExoPlanet> GetAllExoPlanetsByRatingDesc()
+        public List<ExoPlanet> GetByRatingDesc()
         {
             using (SqlConnection conn = Connection)
             {
@@ -173,9 +173,9 @@ namespace ExoTravelFullStack.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 Name = DbUtils.GetString(reader, "Name"),
-                                Mass = DbUtils.GetInt(reader, "Mass"),
-                                Radius = DbUtils.GetInt(reader, "Radius"),
-                                EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                Mass = DbUtils.GetDec(reader, "Mass"),
+                                Radius = DbUtils.GetDec(reader, "Radius"),
+                                EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                 Orbit = DbUtils.GetInt(reader, "Orbit"),
                                 LightYears = DbUtils.GetInt(reader, "LightYears"),
                                 Detail = DbUtils.GetString(reader, "Detail"),
@@ -188,7 +188,6 @@ namespace ExoTravelFullStack.Repositories
                 }
             }
         }
-
 
         public void Add(ExoPlanet exoPlanet)
         {
@@ -215,9 +214,6 @@ namespace ExoTravelFullStack.Repositories
             }
         }
 
-
-
-
         public ExoPlanet GetExoPlanetById(int id)
         {
             using (var conn = Connection)
@@ -239,9 +235,9 @@ namespace ExoTravelFullStack.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 Name = DbUtils.GetString(reader, "Name"),
-                                Mass = DbUtils.GetInt(reader, "Mass"),
-                                Radius = DbUtils.GetInt(reader, "Radius"),
-                                EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                Mass = DbUtils.GetDec(reader, "Mass"),
+                                Radius = DbUtils.GetDec(reader, "Radius"),
+                                EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                 Orbit = DbUtils.GetInt(reader, "Orbit"),
                                 LightYears = DbUtils.GetInt(reader, "LightYears"),
                                 Detail = DbUtils.GetString(reader, "Detail"),

@@ -14,23 +14,12 @@ export const LogHomeCard = ({ isLoggedIn, getLoggedInUser }) => {
   // React-Router-Dom use
   const { logId } = useParams();
   let [currentUser, setCurrentUser] = useState();
-  const [fireId, setFireId] = useState(null);
   const [logs, setLogs] = useState();
-//   console.log(user);
-  const getMeFire = useCallback(async()=>{
-    try{
-        var fireBaseId = firebase.auth().currentUser.uid;
-
-    }
-    
-    catch(e){
-        console.log(e.message)
-    }finally{
-        getUserByFirebaseId(fireBaseId).then(setFireId)
-    }
-    
-    
-},[])
+  // const [isLoggedIn, setIsLoggedIn] = useState(null);
+  // useEffect(() => {
+  //   onLoginStatusChange(setIsLoggedIn);
+  // }, []);
+  
 // var user  =  getUserByFirebaseId(fireBaseId);
 
 //   setCurrentUser(getLoggedInUser);
@@ -38,17 +27,15 @@ export const LogHomeCard = ({ isLoggedIn, getLoggedInUser }) => {
 
   // Gets current users id
   
-  useEffect( ()  => {
-    getMeFire()
-  }, []);
+  
   // Gets all the logs by user for Home page
   useEffect( ()  => {
-    if(fireId){
+    
 
-        getLogsByUserId(fireId.id).then(setLogs);
-    }
-  }, [fireId]);
-console.log(fireId)
+        getLogsByUserId().then(setLogs);
+    
+  }, []);
+
   // Sends a list of users logs to Home Page
   return (
     <div className="log-home-container">
