@@ -132,7 +132,7 @@ console.log(fireId)
       setExoPlanet(exoPlanet);
     });
   }, [exoPlanetId]);
-
+console.log(exoPlanet)
   // Details info being sent to the DOM
   return (
     <div className="exoPlanetContainer">

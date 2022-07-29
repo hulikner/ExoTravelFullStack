@@ -47,7 +47,7 @@ export const getReceiptById = (id) => {
           if (resp.ok) {
               return resp.json();
           } else {
-              throw new Error("An error occurred retrieving Receipt");
+            throw new Error("An error occurred retrieving Receipt");
           }
       });
   });
@@ -64,7 +64,7 @@ export const getReceiptByLogId = (id) => {
           if (resp.ok) {
               return resp.json();
           } else {
-              throw new Error("An error occurred retrieving Receipt");
+            throw new Error("An error occurred retrieving Receipt");
           }
       });
   });

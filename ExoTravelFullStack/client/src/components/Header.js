@@ -37,6 +37,10 @@ export function Header({ isLoggedIn }) {
                   {" "}
                   <FontAwesomeIcon icon={faGlobe} /> Exo-Planets{" "}
                 </Link>
+                <Link className={`navbar__link ${location.pathname === "/logs" ? "active" : ""}`} to="/logs">
+                  {" "}
+                  <FontAwesomeIcon icon={faPassport} /> Itineraries{" "}
+                </Link>
                 <Link className={`navbar__link ${location.pathname === "/hubDrives" ? "active" : ""}`} to="/hubDrives">
                   {" "}
                   <FontAwesomeIcon icon={faShuttleSpace} /> How It Works{" "}
@@ -44,10 +48,6 @@ export function Header({ isLoggedIn }) {
                 <Link className={`navbar__link ${location.pathname === "/abouts" ? "active" : ""}`} to="/abouts">
                   {" "}
                   <FontAwesomeIcon icon={faUserAstronaut} /> About Us{" "}
-                </Link>
-                <Link className={`navbar__link ${location.pathname === "/logs" ? "active" : ""}`} to="/logs">
-                  {" "}
-                  <FontAwesomeIcon icon={faPassport} /> Logs{" "}
                 </Link>
                 
                   <Link className="navbar__link" to="/login" >

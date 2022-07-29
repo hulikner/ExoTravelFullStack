@@ -9,6 +9,7 @@ namespace ExoTravelFullStack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ExoPlanetsController : ControllerBase
     {
         private readonly IExoPlanetRepository _exoPlanetRepository;
@@ -25,28 +26,28 @@ namespace ExoTravelFullStack.Controllers
             return Ok(_exoPlanetRepository.GetAllExoPlanets());
         }
 
-        [HttpGet("GetAllExoPlanetsByLightYearAsc")]
-        public IActionResult GetAllExoPlanetsByLightYearAsc()
+        [HttpGet("GetByLightYearAsc")]
+        public IActionResult GetByLightYearAsc()
         {
-            return Ok(_exoPlanetRepository.GetAllExoPlanetsByLightYearAsc());
+            return Ok(_exoPlanetRepository.GetByLightYearAsc());
         }
 
-        [HttpGet("GetAllExoPlanetsByLightYearDesc")]
-        public IActionResult GetAllExoPlanetsByLightYearDesc()
+        [HttpGet("GetByLightYearDesc")]
+        public IActionResult GetByLightYearDesc()
         {
-            return Ok(_exoPlanetRepository.GetAllExoPlanetsByLightYearDesc());
+            return Ok(_exoPlanetRepository.GetByLightYearDesc());
         }
 
-        [HttpGet("GetAllExoPlanetsByRatingAsc")]
-        public IActionResult GetAllExoPlanetsByRatingAsc()
+        [HttpGet("GetByRatingAsc")]
+        public IActionResult GetByRatingAsc()
         {
-            return Ok(_exoPlanetRepository.GetAllExoPlanetsByRatingAsc());
+            return Ok(_exoPlanetRepository.GetByRatingAsc());
         }
 
-        [HttpGet("GetAllExoPlanetsByRatingDesc")]
-        public IActionResult GetAllExoPlanetsByRatingDesc()
+        [HttpGet("GetByRatingDesc")]
+        public IActionResult GetByRatingDesc()
         {
-            return Ok(_exoPlanetRepository.GetAllExoPlanetsByRatingDesc());
+            return Ok(_exoPlanetRepository.GetByRatingDesc());
         }
 
         // GET api/<ExoPlanetsController>/5
@@ -73,12 +74,14 @@ namespace ExoTravelFullStack.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(ExoPlanet exoPlanet)
         {
-            if (exoPlanet.Id != exoPlanet.Id)
-            {
-                return BadRequest();
-            }
+            var planet = _exoPlanetRepository.GetExoPlanetById(exoPlanet.Id);
+            planet.Rating = exoPlanet.Rating;
+            //if (exoPlanet.Id != exoPlanet.Id)
+            //{
+            //    return BadRequest();
+            //}
 
-            _exoPlanetRepository.Update(exoPlanet);
+            _exoPlanetRepository.Update(planet);
             return NoContent();
 
         }

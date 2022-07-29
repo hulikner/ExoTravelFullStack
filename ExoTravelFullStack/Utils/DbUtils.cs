@@ -36,6 +36,10 @@ namespace ExoTravelFullStack.Utils
         {
             return reader.GetInt32(reader.GetOrdinal(column));
         }
+        public static decimal GetDec(SqlDataReader reader, string column)
+        {
+            return reader.GetDecimal(reader.GetOrdinal(column));
+        }
 
         /// <summary>
         ///  Get a DateTime from a data reader object.

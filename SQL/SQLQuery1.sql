@@ -32,9 +32,9 @@ GO
 CREATE TABLE [ExoPlanet] (
   [Id] integer PRIMARY KEY IDENTITY(1, 1),
   [Name] NVARCHAR(28) NOT NULL,
-  [Mass] integer NOT NULL,
-  [Radius] integer NOT NULL,
-  [EqTemp] integer NOT NULL,
+  [Mass] decimal(2,1) NOT NULL,
+  [Radius] decimal(2,1) NOT NULL,
+  [EqTemp] decimal(2,1) NOT NULL,
   [Orbit] integer NOT NULL,
   [LightYears] integer NOT NULL,
   [Detail] nvarchar(255) NOT NULL,
@@ -79,7 +79,7 @@ GO
 CREATE TABLE [HubDrive] (
   [Id] integer PRIMARY KEY IDENTITY(1, 1),
   [Name] nvarchar(255) NOT NULL,
-  [Detail] nvarchar(255) NOT NULL,
+  [Detail] nvarchar(4000) NOT NULL,
   [CardDetail] nvarchar(255) NOT NULL,
   [Image] nvarchar(255) NOT NULL
 )
@@ -88,7 +88,7 @@ GO
 CREATE TABLE [About] (
   [Id] integer PRIMARY KEY IDENTITY(1, 1),
   [Name] nvarchar(255) NOT NULL,
-  [Detail] nvarchar(255) NOT NULL,
+  [Detail] nvarchar(4000) NOT NULL,
   [CardDetail] nvarchar(255) NOT NULL,
   [Image] nvarchar(255) NOT NULL
 )

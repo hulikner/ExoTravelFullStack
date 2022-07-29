@@ -56,7 +56,7 @@ namespace ExoTravelFullStack.Controllers
             var receipt = _receiptRepository.GetReceiptByLogId(id);
             if (receipt == null)
             {
-                return NotFound();
+                return Ok(null);
             }
             return Ok(receipt);
         }

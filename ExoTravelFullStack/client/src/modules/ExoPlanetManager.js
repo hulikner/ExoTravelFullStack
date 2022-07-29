@@ -1,39 +1,118 @@
+import { getToken } from "./AuthManager";
 
 const apiUrl = "/api/exoPlanets"
 
 export const getAllExoPlanets = () => {
-    return fetch(`${apiUrl}`)
-    .then(res => res.json())
-}
-
-export const updateExoPlanet  = (editedPlanet) => {
-    return fetch(`${apiUrl}/${editedPlanet.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(editedPlanet)
+    return getToken().then((token) => {
+        return fetch(`${apiUrl}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((resp) => {
+            if (resp.ok) {
+                return resp.json();
+            } else {
+                throw new Error("An unknown error occurred while trying to get the ExoPlanets.");
+            }
+        });
     });
-  }
-  
-export const getAllExoPlanetsByLightYearsAsc = () => {
-    return fetch(`${apiUrl}/GetAllExoPlanetsByLightYearAsc`)
-    .then(res => res.json())
-}
-export const getAllExoPlanetsByLightYearsDesc = () => {
-    return fetch(`${apiUrl}/GetAllExoPlanetsByLightYearDesc`)
-    .then(res => res.json())
-}
-export const getAllExoPlanetsByRatingAsc = () => {
-    return fetch(`${apiUrl}/GetAllExoPlanetsByRatingAsc`)
-    .then(res => res.json())
-}
-export const getAllExoPlanetsByRatingDesc = () => {
-    return fetch(`${apiUrl}/GetAllExoPlanetsByRatingDesc`)
-    .then(res => res.json())
-}
+};
+
+export const getByLightYearsAsc = () => {
+    return getToken().then((token) => {
+        return fetch(`${apiUrl}/GetByLightYearAsc`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((resp) => {
+            if (resp.ok) {
+                return resp.json();
+            } else {
+                throw new Error("An unknown error occurred while trying to get the ExoPlanets.");
+            }
+        });
+    });
+};
+
+export const getByLightYearsDesc = () => {
+    return getToken().then((token) => {
+        return fetch(`${apiUrl}/GetByLightYearDesc`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((resp) => {
+            if (resp.ok) {
+                return resp.json();
+            } else {
+                throw new Error("An unknown error occurred while trying to get the ExoPlanets.");
+            }
+        });
+    });
+};
+
+export const getByRatingAsc = () => {
+    return getToken().then((token) => {
+        return fetch(`${apiUrl}/GetByRatingAsc`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((resp) => {
+            if (resp.ok) {
+                return resp.json();
+            } else {
+                throw new Error("An unknown error occurred while trying to get the ExoPlanets.");
+            }
+        });
+    });
+};
+
+export const getByRatingDesc = () => {
+    return getToken().then((token) => {
+        return fetch(`${apiUrl}/GetByRatingDesc`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((resp) => {
+            if (resp.ok) {
+                return resp.json();
+            } else {
+                throw new Error("An unknown error occurred while trying to get the ExoPlanets.");
+            }
+        });
+    });
+};
 
 export const getExoPlanetById = (id) => {
-    return fetch(`${apiUrl}/${id}`)
-    .then(res => res.json())
-}
+    return getToken().then((token) => {
+      return fetch(`${apiUrl}/${id}`, {
+          method: "GET",
+          headers: {
+              Authorization: `Bearer ${token}`,
+          },
+      }).then((resp) => {
+          if (resp.ok) {
+              return resp.json();
+          } else {
+              throw new Error("An error occurred retrieving exoPlanet");
+          }
+      });
+  });
+};
+
+export const updateExoPlanet = (exoPlanet) => {
+    return getToken().then((token) => {
+        return fetch(`${apiUrl}/${exoPlanet.id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(exoPlanet),
+        })
+    });
+  };

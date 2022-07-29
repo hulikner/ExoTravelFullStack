@@ -10,9 +10,9 @@ GO
 
 DROP TABLE IF EXISTS [About];
 DROP TABLE IF EXISTS [HubDrive];
+DROP TABLE IF EXISTS [Receipt];
 DROP TABLE IF EXISTS [Log];
 DROP TABLE IF EXISTS [Review];
-DROP TABLE IF EXISTS [Receipt];
 DROP TABLE IF EXISTS [ExoPlanet];
 DROP TABLE IF EXISTS [UserProfile];
 DROP TABLE IF EXISTS [UserType];
@@ -54,18 +54,6 @@ CREATE TABLE [ExoPlanet] (
 )
 GO
 
-CREATE TABLE [Receipt] (
-  [Id] integer PRIMARY KEY IDENTITY(1, 1),
-  [UserProfileId] integer NOT NULL,
-  [ExoPlanetId] integer NOT NULL,
-  [DepartureDate] integer NOT NULL,
-  [ReturnDate] integer NOT NULL,
-  [LogId] integer NOT NULL,
-  [Paid] integer NOT NULL,
-  [Mode] nvarchar(50) NOT NULL
-)
-GO
-
 CREATE TABLE [Review] (
   [Id] integer PRIMARY KEY IDENTITY(1, 1),
   [UserProfileId] integer NOT NULL,
@@ -84,6 +72,18 @@ CREATE TABLE [Log] (
   [DepartureDate] integer NOT NULL,
   [ReturnDate] integer NOT NULL,
   [ReviewId] integer NOT NULL,
+  [Mode] nvarchar(50) NOT NULL
+)
+GO
+
+CREATE TABLE [Receipt] (
+  [Id] integer PRIMARY KEY IDENTITY(1, 1),
+  [UserProfileId] integer NOT NULL,
+  [ExoPlanetId] integer NOT NULL,
+  [DepartureDate] integer NOT NULL,
+  [ReturnDate] integer NOT NULL,
+  [LogId] integer NOT NULL,
+  [Paid] integer NOT NULL,
   [Mode] nvarchar(50) NOT NULL
 )
 GO

@@ -54,8 +54,8 @@ export const ReviewCard = ({ review }) => {
   return (
     <div className="review-card-content">
       <div className="review-card-img">
-        <img className="review-pic" src={`../../Images/${review.exoPlanet?.name}.jpg`} />
-        <span className="review-card-name">{review.exoPlanet?.name}</span>
+        <img className="review-pic" src={`../../Images/${review.exoPlanet.name}.jpg`} />
+        <span className="review-card-name">{review.exoPlanet.name}</span>
       </div>
       <div className="review-card-details">
         <span className="review-card">

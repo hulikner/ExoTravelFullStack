@@ -1,55 +1,60 @@
 // Imports
+import { parse } from "date-fns";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { updateExoPlanet } from "../../modules/ExoPlanetManager";
+import { getExoPlanetById, updateExoPlanet } from "../../modules/ExoPlanetManager";
+import { getLogById } from "../../modules/LogManager";
 import { addReview, getReviewsByExoPlanet } from "../../modules/ReviewManager";
 import "./ReviewForm.css";
 
-export const defaultReview=(log, exoPlanetId)=>
+export let defaultReview=(exoPlanetId)=>
 (
     {
-    id: "",
-    userProfileId: log.userProfileId,
-    createDate: new Date().getTime() / 1000,
-    editDate: 0,
-    exoPlanetId: Number(exoPlanetId),
+    createDate: parseInt(new Date().getTime() / 1000),
+    editDate: 1659038896,
+    exoPlanetId: +exoPlanetId,
     message: "",
-    star: "",
+    star: 0
 }
 )
 export const ReviewForm = () => {
     // React-Router-DOM use
     const { exoPlanetId } = useParams();
-    
+    const logId = useParams();
+
     // State setState for all reviews
     const [allReviews, setAllReviews] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    const [review, setReview] = useState(defaultReview( exoPlanetId));
+    let [review, setReview] = useState(defaultReview(exoPlanetId));
     const navigate = useNavigate();
 
+// console.log(logId)
   const getStarTotal = (newStar) => {
     const reviewCount = +allReviews.length + 1;
     let totalStars = +newStar;
     allReviews.map((review) => (totalStars += +review.star));
     return totalStars / reviewCount;
   };
-
-
+  
   const handleControlledInputChange = (t) => {
     const newReview = { ...review };
     let selectedVal = t.target.value;
     newReview[t.target.id] = selectedVal;
     setReview(newReview);
   };
-
+  
   const handleClickSaveEvent = (t) => {
     t.preventDefault();
-
+    
     if (review.message !== "" && review.star) {
       setIsLoading(true);
 
-      const newStarRating = getStarTotal(review.star);
-      const exoPlanetObject = { id: +exoPlanetId, rating: +newStarRating };
+      const newStarRating = getStarTotal(+review.star);
+      const exoPlanetObject = { 
+        id: +exoPlanetId,
+        rating: +newStarRating };
+        review.star = Number(review.star);
+        console.log(review)
       updateExoPlanet(exoPlanetObject)
         .then(addReview(review))
         .then(() => navigate(`/exoPlanets/${+exoPlanetId}/reviews`));
@@ -86,7 +91,7 @@ export const ReviewForm = () => {
             </fieldset>
             <fieldset className="review-fields">
               <label htmlFor="star">Number of star:</label>
-              <input type="number" min="1" max="5" id="star" onChange={handleControlledInputChange} required className="form-control star" placeholder="star" value={review.star} />
+              <input type="number" min="1" max="5" id="star" onChange={handleControlledInputChange} required className="form-control star" placeholder="star" value={Number(review.star)} />
             </fieldset>
           </div>
           <div className="review-form-buttons">

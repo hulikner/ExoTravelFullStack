@@ -4,9 +4,9 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Mass { get; set; }
-        public int Radius { get; set; }
-        public int EqTemp { get; set; }
+        public decimal Mass { get; set; }
+        public decimal Radius { get; set; }
+        public decimal EqTemp { get; set; }
         public int Orbit { get; set; }
         public int LightYears { get; set; }
         public string Detail { get; set; }

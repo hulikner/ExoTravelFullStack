@@ -89,9 +89,9 @@ namespace ExoTravelFullStack.Repositories
                                 ExoPlanet = new ExoPlanet()
                                 {
                                     Name = DbUtils.GetString(reader, "Name"),
-                                    Mass = DbUtils.GetInt(reader, "Mass"),
-                                    Radius = DbUtils.GetInt(reader, "Radius"),
-                                    EqTemp = DbUtils.GetInt(reader, "EqTemp"),
+                                    Mass = DbUtils.GetDec(reader, "Mass"),
+                                    Radius = DbUtils.GetDec(reader, "Radius"),
+                                    EqTemp = DbUtils.GetDec(reader, "EqTemp"),
                                     Orbit = DbUtils.GetInt(reader, "Orbit"),
                                     LightYears = DbUtils.GetInt(reader, "LightYears"),
                                     Detail = DbUtils.GetString(reader, "Detail"),

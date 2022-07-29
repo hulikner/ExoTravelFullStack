@@ -52,8 +52,10 @@ namespace ExoTravelFullStack.Controllers
         [HttpPost]
         public IActionResult Post(Review review)
         {
+            var user = GetCurrentUserProfile();
+            review.UserProfileId = user.Id;
             _reviewRepository.Add(review);
-            return CreatedAtAction("Get", new { id = review.Id }, review);
+            return NoContent();
         }
 
         // PUT api/<ReviewsController>/5
@@ -61,7 +63,7 @@ namespace ExoTravelFullStack.Controllers
         public IActionResult Put(int id, Review review)
         {
             var user = GetCurrentUserProfile();
-            review.UserProfile = user;
+            review.UserProfileId = user.Id;
             //if (id != review.Id)
             //{
             //    return BadRequest();

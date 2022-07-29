@@ -38,7 +38,7 @@ export const ReviewEditForm = () => {
       userProfileId: review.userProfileId,
       exoPlanetId: review.exoPlanetId,
       createDate: review.createDate,
-      editDate: new Date().getTime() / 1000,
+      editDate: parseInt(new Date().getTime() / 1000),
       star: review.star,
       message: review.message,
     };
