@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../modules/AuthManager";
+import "./Login.css";
+
 
 export function Login() {
   const navigate = useNavigate();
@@ -18,7 +20,11 @@ export function Login() {
 
   return (
     <Form onSubmit={loginSubmit}>
-      <fieldset>
+      <fieldset className="login-container">
+      <div className="login-logo-home">
+              <img className="login-logo-home" src="/Images/Exo-Travel-Logo.svg" />
+            </div>
+            <h2 className="sign-in">Sign In</h2>
         <FormGroup>
           <Label for="email">Email</Label>
           <Input
@@ -36,11 +42,12 @@ export function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </FormGroup>
+        <br />
         <FormGroup>
-          <Button>Login</Button>
+          <Button className="login-btn">Login</Button>
         </FormGroup>
-        <em>
-          Not registered? <Link to="/register">Register</Link>
+        <em className="login-register">
+          Not registered? <Link className="registerLink" to="/register">Register</Link>
         </em>
       </fieldset>
     </Form>

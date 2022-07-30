@@ -4,6 +4,8 @@ import "../Home.css";
 import { Link, useParams } from "react-router-dom";
 import { getAllExoPlanets } from "../../modules/ExoPlanetManager";
 import Rating from "@mui/material/Rating";
+import Carousel from 'nuka-carousel';
+
 
 // Exo-Planet card for Home page
 export const ExoPlanetHomeCard = () => {
@@ -18,6 +20,13 @@ export const ExoPlanetHomeCard = () => {
     getAllExoPlanets().then(setExoPlanets);
   }, []);
 
+  const info = {
+    slidesToShow: 3,
+    wrapAround: true,
+    autoplay: true,
+    keyCodeConfig: true,
+    autoplayInterval: 1000,
+  };
   // Exo-Planet Home Card info sent to DOM
   return (
     <div className="exoPlanet-home-container">
@@ -27,11 +36,13 @@ export const ExoPlanetHomeCard = () => {
         <div className="exoPlanet-home-content" key={x.id}>
           <Link className="exoPlanet-home-link" to={`/exoPlanets/${x.id}`}>
             <span className="exoPlanet-home-name">{x.name}</span>
+          
             <img className="exoPlanet-home-img" src={`./Images/${x.name}.jpg`} />
-            <p className="card-home-exoPlanet-starRating">
-              <Rating style={{ color: "#f4100f" }} value={+x.rating} readOnly />{" "}
-            </p>
-          </Link>
+           
+          <p className="card-home-exoPlanet-starRating">
+              <Rating style={{ color: "#2f53d8" }} value={+x.rating} readOnly />{" "}
+             </p>
+           </Link>
         </div>
       ))}
     </div>

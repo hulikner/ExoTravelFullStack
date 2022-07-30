@@ -65,7 +65,7 @@ export const ReceiptDetail = () => {
   return (
     <>
       <h2 className="receipt-details-title">
-        {receipt.user?.firstName}, Here Is The Details On Your Trip To {receipt.exoPlanet?.name}
+        {receipt.userProfile?.firstName}, Here Are The Details On Your Trip To {receipt.exoPlanet?.name}
       </h2>
       <div className="receipt-detail-image">
         <div className="receipt-detail-img">
