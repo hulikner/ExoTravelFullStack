@@ -46,7 +46,7 @@ export const LogDetail = () => {
 			returnDate: log.returnDate,
 			exoPlanetId: log.exoPlanetId,
 			mode: log.mode,
-			paid: +finalPrice,
+			paid: Math.round(finalPrice),
 			logId: log.id,
 		};
 
@@ -124,7 +124,7 @@ export const LogDetail = () => {
 			{" "}
 			<div className="log-details-title-container">
 				<h2 className="log-details-title">
-					{log.user?.firstName}, Here Is The Details On Your Trip To {log.exoPlanet?.name}
+					{log.userProfile?.firstName}, Here Are The Details On Your Trip To {log.exoPlanet?.name}
 				</h2>
 			</div>
 			<div className="log-detail-image">

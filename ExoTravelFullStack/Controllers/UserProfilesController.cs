@@ -7,6 +7,7 @@ namespace ExoTravelFullStack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class UserProfileController : ControllerBase
     {
         private readonly IUserProfileRepository _userProfileRepository;
@@ -36,7 +37,7 @@ namespace ExoTravelFullStack.Controllers
         public IActionResult Post(UserProfile userProfile)
         {
             userProfile.CreateDateTime = DateTime.Now;
-            userProfile.UserTypeId = UserType.AUTHOR_ID;
+            userProfile.UserTypeId = UserType.ADMIN_ID;
             _userProfileRepository.Add(userProfile);
             return CreatedAtAction(
                 nameof(GetUserProfile),

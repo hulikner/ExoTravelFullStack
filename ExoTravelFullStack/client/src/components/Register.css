@@ -1,0 +1,50 @@
+.register-btn {
+  margin: 0;
+  display: flex;
+  width: 100px;
+  height: 30px;
+  border: 3px solid #f4100f;
+  color: #c0c0c0;
+  border-radius: 5px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(119, 119, 114, 1) 0%, rgba(0, 0, 0, 0.97) 100%);
+  font-weight: bold;
+  font-size: large;
+  transition: background-color 1s, color 1s;
+  justify-content: center;
+  box-shadow: 2px 2px 2px 2px black;
+  font-family: "Play", sans-serif;
+}
+
+.register-container {
+  display:flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse at 50% 50%, rgba(119, 119, 114, 1) 0%, rgba(0, 0, 0, 0.97) 100%);
+  padding: 1em;
+  font-size: xx-large;
+  box-shadow: 4px 4px 4px 4px black;
+  border: 5px solid #f4100f;
+  border-radius: 50px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 40vw;
+}
+
+input#firstName.form-control,
+input#lastName.form-control, 
+input#displayName.form-control, 
+input#imageLocation.form-control,
+input#confirmPassword.form-control {
+  background: radial-gradient(ellipse at 50% 50%, rgba(119, 119, 114, 1) 0%, rgba(0, 0, 0, 0.97) 100%);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px 3px black;
+  outline: none;
+  color: #c0c0c0;
+
+  font-family: "Play", sans-serif;
+  -webkit-text-stroke-width: 0.75px;
+  -webkit-text-stroke-color: black;
+}

@@ -9,9 +9,12 @@
   margin: 20px;
 }
 
-.receipt-detail-title {
+.receipt-details-title {
   position: relative;
-  top: auto;
+  top: auto;  
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .receipt-img {
