@@ -153,9 +153,9 @@ export const ReceiptDetail = () => {
         </div>
       </div>
       <div className="receipt-page-buttons">
-        <button type="button" className="receipt-page-button" onClick={() => navigate(`/logs`)}>
+        {/* <button type="button" className="receipt-page-button" onClick={() => navigate(`/logs`)}>
           Print
-        </button>
+        </button> */}
         <button type="button" className="receipt-page-button" onClick={() => navigate(`/logs`)}>
           Back
         </button>
