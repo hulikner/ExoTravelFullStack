@@ -1,9 +1,4 @@
-.home {
-  display: flex;
-  flex-direction: column;
-  margin: 5px;
-  justify-content: space-around;
-}
+
 
 .exoPlanet-home-content {
   display: flex;
@@ -116,6 +111,7 @@ display:flex;
   margin: -33px;
 }
 
+
 .exoPlanet-home-img {
   height: 100px;
   width: 100%;
@@ -190,10 +186,10 @@ h2.log-home-header {
   border: 5px solid #f4100f;
   border-radius: 20px;
   box-shadow: 5px 5px 5px 5px black;
-  height:200px;
+  height:150px;
   justify-content: space-evenly;
   align-items: center;
-  width: 22vw;
+  width: 30vw;
   text-decoration: none;
   color: #c0c0c0;
   margin: 16px;
@@ -206,7 +202,7 @@ h2.log-home-header {
 
 .log-home-card {
   display: flex;
-  max-height: 90vh;
+  max-height: 57vh;
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-styles: none;
@@ -257,6 +253,7 @@ h2.receipt-home-header {
   flex-direction: row;
   width: 25vw;
   justify-content: center;
+  align-items: center;
   font-size: 40px;
   color: #c0c0c0;
   border: 5px solid #f4100f;
@@ -271,8 +268,8 @@ h2.receipt-home-header {
 .receipt-home-content {
   display: flex;
   flex-direction: column;
-  max-width: 25vw;
-  max-height: 90vh;
+  max-width: 40vw;
+  max-height: 57vh;
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-styles: none;
@@ -286,8 +283,8 @@ h2.receipt-home-header {
   box-shadow: 5px 5px 5px 5px black;
   justify-content: space-evenly;
   align-items: center;
-  width: 22vw;
-  height: 200px;
+  width: 30vw;
+  height: 150px;
   text-decoration: none;
   color: #c0c0c0;
   margin: 16px;
@@ -305,7 +302,7 @@ h2.receipt-home-header {
   /* box-shadow: 5px 5px 5px 5px black; */
   justify-content: space-evenly;
   align-items: center;
-  /* width: 22vw; */
+  width: 40vw;
   /* height: 200px; */
   text-decoration: none;
   /* color: #c0c0c0; */
@@ -336,4 +333,57 @@ h2.receipt-home-header {
   flex-direction: column;
   color: #c0c0c0;
   text-decoration: none;
+}
+
+.home{
+  display: flex;
+  flex-wrap: wrap;
+
+
+}
+.log-home-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.home-cards{
+  flex-basis: 100%;
+  height: fit-content;
+  overflow: hidden;
+}
+.logHomeContainer{
+flex-basis: 45%;
+
+}
+.recieptContainer{
+  flex-basis: 45%;
+
+}
+.exoplanets-name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 25px;
+  width: 25vw;
+  color: #c0c0c0;
+  margin-bottom: 40px;
+  font-size: 40px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  border: 5px solid #f4100f;
+  border-radius: 30px;
+  box-shadow: 5px 5px 5px 5px black;
+  background: radial-gradient(ellipse at 50% 50%, rgba(119, 119, 114, 1) 0%, rgba(0, 0, 0, 0.97) 100%);
+}
+.slider-container{
+  padding: 30px;
+}
+.slide-visible{
+  font-size: 20px;
+  color: #c0c0c0;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  
 }

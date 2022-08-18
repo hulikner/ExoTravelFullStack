@@ -32,11 +32,11 @@ import { color } from "@mui/system";
 export function Home({ getLoggedInUser }) {
   // const [fireId, setFireId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  // const [exoPlanets, setExoPlanets] = useState([]);
-  // const [planets, setPlanets] = useState([]);
+  const [exoPlanets, setExoPlanets] = useState([]);
+  const [planets, setPlanets] = useState([]);
   useEffect(() => {
     onLoginStatusChange(setIsLoggedIn);
-    // getAllExoPlanets().then(setExoPlanets);
+    getAllExoPlanets().then(setExoPlanets);
 
   }, []);
 
@@ -48,25 +48,24 @@ export function Home({ getLoggedInUser }) {
   // Gets current users id
   // getAllExoPlanets();
 
-  // const slides = exoPlanets.map((color, index) => (
-  //   <>
-  //   <img className="slide-img"
-  //     src={`/Images/${color.name}.jpg`}
-  //     key={color.Id}
-  //     alt={`Slide ${index + 1}`}
-  //     data-slide={`Slide ${index + 1}`}
+  const slides = exoPlanets.map((color, index) => (
+    <>
+   <img className="slide-img"
+       src={`/Images/${color.name}.jpg`}
+       key={color.Id}
+       alt={`Slide ${index + 1}`}
+       data-slide={`Slide ${index + 1}`}
       
       
-  //   />{color.name}</>
-  // ));
+     />{color.name}</>
+   ));
   
   return (
     <>
-      <div className="home">
         <div className="home-header"></div>
+      <div className="home">
         <div className="home-cards">
-         
-        {/* <Carousel width="20" cellAlign="center" speed={1000} cellSpacing={15} slideWidth="20px" wrapAround={true}
+        <Carousel width="20" cellAlign="center" speed={1000} cellSpacing={15} slideWidth="20px" wrapAround={true}
         slidesToShow={26} autoplay 
         renderTopCenterControls={({ currentSlide }) => (     
         <div className="exoplanets-name">Exo-Planets</div>   )}   
@@ -75,13 +74,19 @@ export function Home({ getLoggedInUser }) {
         renderCenterRightControls={({ nextSlide }) => (     
         <button onClick={nextSlide}>Next</button>   )}> 
         {slides}
-        </Carousel> */}
+        </Carousel>
+        
 
 
 
+           {/* <ExoPlanetHomeCard /> */}
+        </div>
+        <div className="logHomeContainer">
 
-           <ExoPlanetHomeCard />
           <LogHomeCard getLoggedInUser={getLoggedInUser} /> 
+        </div>
+        <div className="recieptContainer">
+
           <ReceiptHomeList />
         </div>
       </div>
