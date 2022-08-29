@@ -32,6 +32,17 @@ import { color } from "@mui/system";
 export function Home({ getLoggedInUser }) {
   // const [fireId, setFireId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  
+// export function Home({ getLoggedInUser }) {
+//   // const [fireId, setFireId] = useState(null);
+//   const [isLoggedIn, setIsLoggedIn] = useState(null);
+//   const [exoPlanets, setExoPlanets] = useState([]);
+//   const [planets, setPlanets] = useState([]);
+//   useEffect(() => {
+//     onLoginStatusChange(setIsLoggedIn);
+//     getAllExoPlanets().then(setExoPlanets);
+
+//   }, []);
   const [exoPlanets, setExoPlanets] = useState([]);
   const [planets, setPlanets] = useState([]);
   useEffect(() => {
