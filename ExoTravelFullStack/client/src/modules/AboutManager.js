@@ -5,6 +5,10 @@ export const getAllAbouts = () => {
     .then(res => res.json())
 }
 
+export const getAboutsById = (id) => {
+    return fetch(`${apiUrl}/${id}`)
+    .then(res => res.json())
+}
 export const getAboutById = (id) => {
     return fetch(`${apiUrl}/${id}`)
     .then(res => res.json())
