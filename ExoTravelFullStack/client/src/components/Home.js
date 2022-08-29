@@ -41,30 +41,6 @@ export function Home({ getLoggedInUser }) {
   }, []);
 
 
-
-
-
-
-  // export function Home({ getLoggedInUser }) {
-  //   // const [fireId, setFireId] = useState(null);
-  //   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  //   const [exoPlanets, setExoPlanets] = useState([]);
-  //   const [planets, setPlanets] = useState([]);
-  //   useEffect(() => {
-  //     onLoginStatusChange(setIsLoggedIn);
-  //     getAllExoPlanets().then(setExoPlanets);
-  
-  //   }, []);
-  
-
-// var user  =  getUserByFirebaseId(fireBaseId);
-
-//   setCurrentUser(getLoggedInUser);
-  // State setState
-
-  // Gets current users id
-  // getAllExoPlanets();
-
   const slides = exoPlanets.map((color, index) => (
     <>
    <img className="slide-img"
